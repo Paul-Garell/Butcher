@@ -38,7 +38,7 @@ int phase[NUM_INCR + 1];
 const int pressureInput = A1;  // where the pressure will be sensed
 const int pressureZ = 102;    // the minimum voltage for 0 pressure
 const int pressureM = 921;    // the maxium voltage for 15psi
-const int pressurePSI = 15;
+const int pressurePSI = 15;  
 float pressure;  // where we want to store the value from the incoming pressure transducer
 int normalP = 0; //placeholder
 
