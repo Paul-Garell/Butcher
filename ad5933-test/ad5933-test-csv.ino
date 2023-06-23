@@ -2,6 +2,7 @@
 #include "AD5933.h"
 #include <Adafruit_MCP4725.h>
 #include <SD.h>
+#include <SPI.h>
 
 #define START_FREQ  (10000)
 #define FREQ_INCR   (5000)
@@ -78,7 +79,7 @@ void setup(void)
     Serial.println("Calibration failed...");
     
   // Initialize SD card
-  if (!SD.begin(10)) {
+  if (!SD.begin(4)) {
     Serial.println("SD card initialization failed!");
     while (true);
   }
