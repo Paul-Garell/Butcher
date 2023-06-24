@@ -1,54 +1,64 @@
+
 #include <Wire.h>
 #include "AD5933.h"
 #include <Adafruit_MCP4725.h>
-
-// Constants
 #define START_FREQ  (10000)
 #define FREQ_INCR   (5000)
 #define NUM_INCR    (18)
 #define REF_RESIST  (300)
-#define IMPEDANCE_THRESHOLD 100
 
-// Mux setup
-int Signal = 5;
-int sL[3] = {8, 9, 10};
-int MUXtable[8][3] = {
-  {0, 0, 0}, {1, 0, 0}, {0, 1, 0}, {1, 1, 0},
+//Threshold setup
+const int impedenceCheck = INT_MAX; //define a low resistance here
+
+//Mux setup
+int Signal = 5; int i; //int n;
+int sL[3] = {8, 9, 10}; //int sU[4] = {13,10,11,12};
+int MUXtable[8][3] = {{0, 0, 0}, {1, 0, 0}, {0, 1, 0}, {1, 1, 0},
   {0, 0, 1}, {1, 0, 1}, {0, 1, 1}, {1, 1, 1}
 };
 
-// DAC setup for Pressure regulator
+//DAC setup for Pressure regulator
+int DACp = 0;
+double Curvoltage = .5;
+
 Adafruit_MCP4725 dac;
-double Curvoltage = 0.5;
+#define DAC_RESOLUTION (9)
 
-// Pressure variables for barometric sensor
-const int pressureInput = A1;
-const int pressureZ = 102;
-const int pressureM = 921;
-float pressure;
-int normalP = 0;
+double gain[NUM_INCR + 1];
+int phase[NUM_INCR + 1];
 
-void setup(void) {
-  // Mux setup
+//Pressure variable for barometric sensor
+const int pressureInput = A1;  // where the pressure will be sensed
+const int pressureZ = 102;    // the minimum voltage for 0 pressure
+const int pressureM = 921;    // the maxium voltage for 15psi
+const int pressurePSI = 15;  
+float pressure;  // where we want to store the value from the incoming pressure transducer
+int normalP = 0; //placeholder
+
+
+void setup(void)
+{
+
+  //Mux setup
   pinMode(Signal, OUTPUT);
-  for (int i = 0; i < 3; i++) {
-    pinMode(sL[i], OUTPUT);
-  }
+  for (i = 0; i < 4; i++) pinMode(sL[i], OUTPUT);
 
-  // DAC setup (pressure regulator)
   pinMode(A2, OUTPUT);
   digitalWrite(A2, LOW);
   dac.begin(0x60);
 
-  // Begin serial at 9600 baud for output
+
+// Begin serial at 9600 baud for output
   Serial.begin(9600);
 
   // Begin I2C
   Wire.begin();
 
+  
   Serial.println("AD5933 Test Started!");
 
-  // Perform initial configuration
+
+  // Perform initial configuration. Fail if any one of these fail.
   if (!(AD5933::reset() &&
         AD5933::setInternalClock(true) &&
         AD5933::setStartFrequency(START_FREQ) &&
@@ -60,7 +70,7 @@ void setup(void) {
     while (true) ;
   }
 
-  // Set mux to the calibration output (select Y0)
+  //Set mux to the calibration output (select Y0) (300 ohm resistor installed on baord)
   digitalWrite(sL[0], MUXtable[0][0]);
   digitalWrite(sL[1], MUXtable[0][1]);
   digitalWrite(sL[2], MUXtable[0][2]);
@@ -72,63 +82,64 @@ void setup(void) {
     Serial.println("Calibration failed...");
 }
 
+int curChannel = 0
 void loop(void) {
-  dac.setVoltage((Curvoltage * 4095) / 5, false);
-
-  for (int i = 0; i < 4; i++) {
-    selection(i);
-  }
-
-  Curvoltage += 0.5;
-  if (Curvoltage > 2.9) {
-    Curvoltage = 0.5;
-  }
+    
+    dac.setVoltage((Curvoltage*4095)/5, false);
+    for (curChannel - 1; curChannel < 8; curChannel++) {
+      if (selection(curChannel)) break;
+    }
+   
+    Curvoltage = Curvoltage + .5; // voltage counter
+    if (Curvoltage > 2.9) {
+      Curvoltage = 0.5;
+    }
 }
 
-void frequencySweepEasy(int pin) {
-  int real[NUM_INCR + 1], imag[NUM_INCR + 1];
-  bool impedanceReachedThreshold = false;
+// Easy way to do a frequency sweep. Does an entire frequency sweep at once and
+// stores the data into arrays for processing afterwards. This is easy-to-use,
+// but doesn't allow you to process data in real time.
+bool frequencySweepEasy(int pin) {
 
+  // Create arrays to hold the data
+  int real[NUM_INCR + 1], imag[NUM_INCR + 1];
+
+  // Perform the frequency sweep
   if (AD5933::frequencySweep(real, imag, NUM_INCR + 1)) {
+    // Print the frequency data
     int cfreq = START_FREQ / 1000;
 
     Serial.print(pin);
     Serial.print(", ");
-    Serial.print(normalP, 1);
+    Serial.print(normalP, 1); // converting to kPa while also printing (units kPa)
 
     for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
+
+      //claculating and printing out the pressure information
+      pressure = analogRead(pressureInput); // will read the value from the input pin
+      pressure = (pressure - pressureZ) * 15 / (pressureM - pressureZ); // convert analog reading to psi
+      normalP = abs((pressure * 6.89476) - 98); // normalize?
+      
+      Serial.print(", ");
+
+      // Compute impedance
       double magnitude = sqrt(pow(real[i], 2) + pow(imag[i], 2));
       double impedance = 1 / (magnitude * gain[i]);
-
-      if (impedance < IMPEDANCE_THRESHOLD) {
-        impedanceReachedThreshold = true;
-        continue;
-      }
-
-      if (impedanceReachedThreshold) {
-        Serial.print(", ");
-        continue;
-      }
-
-      Serial.print(", ");
       Serial.print(impedance);
+
+      if(impedance > impedanceCheck) return true;
     }
     Serial.println(" ");
   } else {
-    // Frequency sweep failed
+    Serial.println("Frequency sweep failed...");
   }
+  return false;
 }
 
-void selection(int pin) {
-  for (int i = 0; i < 8; i++) {
-    digitalWrite(Signal, LOW);
-    digitalWrite(sL[0], MUXtable[i][0]);
-    digitalWrite(sL[1], MUXtable[i][1]);
-    digitalWrite(sL[2], MUXtable[i][2]);
-    delay(1000);
 
-    pressure = analogRead(pressureInput);
-    normalP = map(pressure, pressureZ, pressureM, 0, 100);
-    frequencySweepEasy(pin);
-  }
+bool selection(int pin) {
+  digitalWrite(sL[0], MUXtable[j][0]);
+  digitalWrite(sL[1], MUXtable[j][1]);
+  digitalWrite(sL[2], MUXtable[j][2]);
+  return frequencySweepEasy(pin);
 }
