@@ -87,6 +87,7 @@ void loop(void) {
     
     dac.setVoltage((Curvoltage*4095)/5, false);
     for (curChannel - 1; curChannel < 8; curChannel++) {
+      Serial.print(curChannel)
       if (selection(curChannel)) break;
     }
    
@@ -137,9 +138,9 @@ bool frequencySweepEasy(int pin) {
 }
 
 
-bool selection(int pin) {
+bool selection(int j) {
   digitalWrite(sL[0], MUXtable[j][0]);
   digitalWrite(sL[1], MUXtable[j][1]);
   digitalWrite(sL[2], MUXtable[j][2]);
-  return frequencySweepEasy(pin);
+  return frequencySweepEasy(j);
 }
