@@ -53,7 +53,8 @@ void setup(void)
   Serial.begin(9600);
   // Begin I2C
   Wire.begin();
-  
+  // Select SD card pin
+  chipSelectPin = 4;
   // Perform initial configuration. Fail if any one of these fail.
   Serial.println("AD5933 Test Started!");
 
@@ -78,7 +79,6 @@ void setup(void)
   else
     Serial.println("Calibration failed...");
 
-  chipSelectPin = 4;
   // Initialize the SD card
   if (SD.begin(chipSelectPin)) {
     Serial.println("SD card module is connected.");
@@ -86,7 +86,6 @@ void setup(void)
     Serial.println("SD card module is not detected. Check connections.");
   }
 
-  
   // Open a new file for writing
   dataFile = SD.open("data.csv", FILE_WRITE);
   if (dataFile) {
