@@ -41,6 +41,7 @@ int normalP = 0; // placeholder
 
 File dataFile;
 
+filename = "data.csv";
 void setup(void)
 {
   pinMode(Signal, OUTPUT);
@@ -87,7 +88,7 @@ void setup(void)
   }
 
   // Open a new file for writing
-  dataFile = SD.open("data.csv", FILE_WRITE);
+  dataFile = SD.open(filename, FILE_WRITE);
   if (dataFile) {
     Serial.println("Created data.csv file.");
   } else {
