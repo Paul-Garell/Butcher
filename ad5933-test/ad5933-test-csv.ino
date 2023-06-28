@@ -77,18 +77,22 @@ void setup(void)
     Serial.println("Calibrated!");
   else
     Serial.println("Calibration failed...");
-    
-  // Initialize SD card
-  if (!SD.begin(4)) {
-    Serial.println("SD card initialization failed!");
-    while (true);
+
+  chipSelectPin = 4;
+  // Initialize the SD card
+  if (SD.begin(chipSelectPin)) {
+    Serial.println("SD card module is connected.");
+  } else {
+    Serial.println("SD card module is not detected. Check connections.");
   }
+
   
   // Open a new file for writing
   dataFile = SD.open("data.csv", FILE_WRITE);
-  if (!dataFile) {
+  if (dataFile) {
+    Serial.println("Created data.csv file.");
+  } else {
     Serial.println("Failed to create data.csv file!");
-    while (true);
   }
   
   // Write the column headers to the file
@@ -100,7 +104,7 @@ void setup(void)
 
 void loop(void) {
   dac.setVoltage((Curvoltage * 4095) / 5, false);
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < 8; i++) {
     selection(i);
   }
   Curvoltage += .5;
