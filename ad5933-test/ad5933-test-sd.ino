@@ -44,7 +44,7 @@ File dataFile;
 void setup(void)
 {
   pinMode(Signal, OUTPUT);
-  for (i = 0; i < 4; i++) pinMode(sL[i], OUTPUT);
+  for (i = 0; i < 3; i++) pinMode(sL[i], OUTPUT);
   pinMode(A2, OUTPUT);
   digitalWrite(A2, LOW);
   dac.begin(0x60);
