@@ -95,7 +95,7 @@ void setup(void)
   }
   
   // Write the column headers to the file
-  dataFile.println("Pin, Pressure, Impedance");
+  dataFile.println("Pin, Pressure, Time, Impedance");
   
   // Close the file
   dataFile.close();
