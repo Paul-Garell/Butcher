@@ -131,6 +131,10 @@ void frequencySweepEasy(int pin) {
         pressure = (pressure - pressureZ) * 15 / (pressureM - pressureZ);
         normalP = abs((pressure * 6.89476) - 98);
         dataFile.print(", ");
+
+        // Time elapsed
+        dataFile.print(millis());
+        dataFile.print(", ");
         
         // Compute impedance
         double magnitude = sqrt(pow(real[i], 2) + pow(imag[i], 2));
