@@ -38,7 +38,7 @@ const int pressurePSI = 15;
 float pressure;  // where we want to store the value from the incoming pressure transducer
 int normalP = 0; // placeholder
 
-SoftwareSerial bluetoothSerial(10, 11);  // RX, TX pins for Bluetooth module
+SoftwareSerial bluetoothSerial(6, 7);  // RX, TX pins for Bluetooth module
 
 void setup(void)
 {
