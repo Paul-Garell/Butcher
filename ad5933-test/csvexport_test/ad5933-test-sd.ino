@@ -41,7 +41,7 @@ int normalP = 0; // placeholder
 
 File dataFile;
 
-filename = "data.csv";
+String filename = "data.csv";
 void setup(void)
 {
   pinMode(Signal, OUTPUT);
@@ -55,7 +55,7 @@ void setup(void)
   // Begin I2C
   Wire.begin();
   // Select SD card pin
-  chipSelectPin = 4;
+  const int chipSelectPin = 4;
   // Perform initial configuration. Fail if any one of these fail.
   Serial.println("AD5933 Test Started!");
 
