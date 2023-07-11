@@ -36,26 +36,18 @@ int normalP = 0; //placeholder
 
 
 void setup(void)
-{
-
-  //Mux setup
+{ //Mux setup
   pinMode(Signal, OUTPUT);
   for (i = 0; i < 4; i++) pinMode(sL[i], OUTPUT);
 
   pinMode(A2, OUTPUT);
   digitalWrite(A2, LOW);
   dac.begin(0x60);
-
-
   // Begin serial at 9600 baud for output
   Serial.begin(9600);
-
   // Begin I2C
   Wire.begin();
-
-  
   Serial.println("AD5933 Test Started!");
-
 
   // Perform initial configuration. Fail if any one of these fail.
   if (!(AD5933::reset() &&
@@ -87,7 +79,8 @@ void loop(void) {
     dac.setVoltage((Curvoltage*4095)/5, false);
     for (curChannel - 1; curChannel <= 8; curChannel++) {
       Serial.print(curChannel);
-      if (selection(curChannel)) break;
+      selection(curChannel);
+      if (frequencySweepEasy(curChannel)) break;
     }
    
     Curvoltage = Curvoltage + .5; // voltage counter
@@ -108,38 +101,34 @@ bool frequencySweepEasy(int pin) {
   if (AD5933::frequencySweep(real, imag, NUM_INCR + 1)) {
     // Print the frequency data
     int cfreq = START_FREQ / 1000;
-
+    Serial.print(millis());
+    Serial.print(", ");
     Serial.print(pin);
     Serial.print(", ");
     Serial.print(normalP, 1); // converting to kPa while also printing (units kPa)
 
     for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
 
-      //claculating and printing out the pressure information
+      //calculating and printing out the pressure information
       pressure = analogRead(pressureInput); // will read the value from the input pin
       pressure = (pressure - pressureZ) * 15 / (pressureM - pressureZ); // convert analog reading to psi
       normalP = abs((pressure * 6.89476) - 98); // normalize?
-      
-      Serial.print(", ");
 
       // Compute impedance
       double magnitude = sqrt(pow(real[i], 2) + pow(imag[i], 2));
       double impedance = 1 / (magnitude * gain[i]);
+      Serial.print(", ");
       Serial.print(impedance);
-
+      // Checker
       if(impedance > impedanceCheck) return true;
     }
     Serial.println(" ");
-  } else {
-    Serial.println("Frequency sweep failed...");
   }
   return false;
 }
 
-
-bool selection(int j) {
+void selection(int j) {
   digitalWrite(sL[0], MUXtable[j][0]);
   digitalWrite(sL[1], MUXtable[j][1]);
   digitalWrite(sL[2], MUXtable[j][2]);
-  return frequencySweepEasy(j);
 }
