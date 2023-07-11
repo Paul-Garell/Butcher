@@ -107,26 +107,17 @@ void setup(void)
 void loop(void) {
   dac.setVoltage((Curvoltage * 4095) / 5, false);
   int pinNum = 0;
-  while ((!impedanceCheck) && (pinNum < 8)) {
-    // Time elapsed
+  while (!(frequencySweepEasy(pinNum)) && (pinNum < 8)) {
     selection(pinNum);
-    ++pinNum;
+    pinNum++;
   }
-  // for (i = 0; i < 8; i++) {
-  //   if (impedanceCheck) {
-  //     break;
-  //   }
-  //   impedanceCheck = false;
-  //   selection(i);
-  // }
-  impedanceCheck = false;
   Curvoltage += .5;
   if (Curvoltage > 2.9) {
     Curvoltage = 0.5;
   }
 }
 
-void frequencySweepEasy(int pin) {
+bool frequencySweepEasy(int pin) {
   // Create arrays to hold the data
   int real[NUM_INCR + 1], imag[NUM_INCR + 1];
 
@@ -137,17 +128,11 @@ void frequencySweepEasy(int pin) {
     if (dataFile) {
       // Calculating and printing out the pressure information
       int cfreq = START_FREQ / 1000;
-      dataFile.print(pin);
-      dataFile.print(", ");
-      dataFile.print(millis());
-      dataFile.print(", ");
-      dataFile.print(normalP, 1);
 
       for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
         pressure = analogRead(pressureInput);
         pressure = (pressure - pressureZ) * 15 / (pressureM - pressureZ);
         normalP = abs((pressure * 6.89476) - 98);
-        dataFile.print(", ");
 
         // Compute impedance
         double magnitude = sqrt(pow(real[i], 2) + pow(imag[i], 2));
@@ -155,27 +140,29 @@ void frequencySweepEasy(int pin) {
 
         // Determine if impedance is too high
         if (impedance > impedanceMax){ 
-        Serial.println("impedance too high :("); 
-        Serial.println(impedance); 
-        impedanceCheck = true;
-        dataFile.print(" ");
-        break;
+          return true;
         }
-        Serial.println(impedance);
-        Serial.println(impedanceCheck);
+
+        dataFile.print(pin);
+        dataFile.print(", ");
+        dataFile.print(millis());
+        dataFile.print(", ");
+        dataFile.print(normalP, 1);
+        dataFile.print(", ");
         dataFile.print(impedance);
+
       }
-      if (!impedanceCheck) dataFile.println(" ");
+      dataFile.println(" ");
       
       // Close the file
       dataFile.close();
     }
   }
+  return false;
 }
 
 void selection(int j) {
   digitalWrite(sL[0], MUXtable[j][0]);
   digitalWrite(sL[1], MUXtable[j][1]);
   digitalWrite(sL[2], MUXtable[j][2]);
-  frequencySweepEasy(j);
 }
