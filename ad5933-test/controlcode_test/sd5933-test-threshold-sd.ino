@@ -107,8 +107,8 @@ int curChannel = 1;
 
 void loop(void) {
   dac.setVoltage((Curvoltage * 4095) / 5, false);
-  for (curChannel - 1; curChannel < 7; curChannel++) {
-    Serial.print(curChannel);
+  for (curChannel - 1; curChannel <= 8; curChannel++) {
+    //Serial.print(curChannel);
     selection(curChannel);
     if (frequencySweepEasy(curChannel)) break;
   }
@@ -135,6 +135,13 @@ bool frequencySweepEasy(int pin) {
       dataFile.print(pin);
       dataFile.print(", ");
       dataFile.print(normalP, 1);
+
+      Serial.print(millis());
+      Serial.print(", ");
+      Serial.print(pin);
+      Serial.print(", ");
+      Serial.print(normalP, 1);
+      Serial.print(", ");
       for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
         pressure = analogRead(pressureInput);
         pressure = (pressure - pressureZ) * 15 / (pressureM - pressureZ);
@@ -145,9 +152,17 @@ bool frequencySweepEasy(int pin) {
         double magnitude = sqrt(pow(real[i], 2) + pow(imag[i], 2));
         double impedance = 1 / (magnitude * gain[i]);
         dataFile.print(impedance);
-        if(impedance > 500) return true;
+
+        Serial.print(impedance);
+        Serial.print(", ");
+
+        if(impedance > 500) {
+          Serial.println(" "); 
+          return true;
+        }
       }
-      dataFile.println(" ");     
+      dataFile.println(" ");  
+      Serial.println(" ");   
       // Close the file
       dataFile.close();
     } 
