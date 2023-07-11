@@ -1,4 +1,3 @@
-
 #include <Wire.h>
 #include "AD5933.h"
 #include <Adafruit_MCP4725.h>
@@ -30,7 +29,7 @@ int phase[NUM_INCR + 1];
 //Pressure variable for barometric sensor
 const int pressureInput = A1;  // where the pressure will be sensed
 const int pressureZ = 102;    // the minimum voltage for 0 pressure
-const int pressureM = 921;    // the maxium voltage for 15psi
+const int pressureM = 921;    // the maximum voltage for 15psi
 const int pressurePSI = 15;  
 float pressure;  // where we want to store the value from the incoming pressure transducer
 int normalP = 0; //placeholder
@@ -48,7 +47,7 @@ void setup(void)
   dac.begin(0x60);
 
 
-// Begin serial at 9600 baud for output
+  // Begin serial at 9600 baud for output
   Serial.begin(9600);
 
   // Begin I2C
@@ -70,7 +69,7 @@ void setup(void)
     while (true) ;
   }
 
-  //Set mux to the calibration output (select Y0) (300 ohm resistor installed on baord)
+  //Set mux to the calibration output (select Y0) (300 ohm resistor installed on board)
   digitalWrite(sL[0], MUXtable[0][0]);
   digitalWrite(sL[1], MUXtable[0][1]);
   digitalWrite(sL[2], MUXtable[0][2]);
@@ -82,12 +81,12 @@ void setup(void)
     Serial.println("Calibration failed...");
 }
 
-int curChannel = 0
+int curChannel = 1;
 void loop(void) {
     
     dac.setVoltage((Curvoltage*4095)/5, false);
-    for (curChannel - 1; curChannel < 8; curChannel++) {
-      Serial.print(curChannel)
+    for (curChannel - 1; curChannel <= 8; curChannel++) {
+      Serial.print(curChannel);
       if (selection(curChannel)) break;
     }
    
