@@ -11,7 +11,7 @@
 #define DAC_RESOLUTION (9)
 
 //Threshold setup
-const int impedenceCheck = INT_MAX; //define a low resistance here
+// const int impedenceCheck = INT_MAX; //define a low resistance here
 
 // Mux setup
 int Signal = 5;
@@ -107,9 +107,10 @@ int curChannel = 1;
 
 void loop(void) {
   dac.setVoltage((Curvoltage * 4095) / 5, false);
-  for (curChannel - 1; curChannel <= 8; curChannel++) {
+  for (curChannel - 1; curChannel < 7; curChannel++) {
     Serial.print(curChannel);
-    if (selection(curChannel)) break;
+    selection(curChannel);
+    if (frequencySweepEasy(curChannel)) break;
   }
   Curvoltage += .5;
   if (Curvoltage > 2.9) {
@@ -144,20 +145,18 @@ bool frequencySweepEasy(int pin) {
         double magnitude = sqrt(pow(real[i], 2) + pow(imag[i], 2));
         double impedance = 1 / (magnitude * gain[i]);
         dataFile.print(impedance);
-        if(impedance > impedanceCheck) return true;
+        if(impedance > 500) return true;
       }
       dataFile.println(" ");     
       // Close the file
       dataFile.close();
-    } else {
-    Serial.println("Frequency sweep failed...");
+    } 
   }
   return false;
 }
 
-bool selection(int j) {
+void selection(int j) {
   digitalWrite(sL[0], MUXtable[j][0]);
   digitalWrite(sL[1], MUXtable[j][1]);
   digitalWrite(sL[2], MUXtable[j][2]);
-  return frequencySweepEasy(j);
 }
