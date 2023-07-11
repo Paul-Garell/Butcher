@@ -135,6 +135,7 @@ bool frequencySweepEasy(int pin) {
       dataFile.print(pin);
       dataFile.print(", ");
       dataFile.print(normalP, 1);
+      dataFile.print(", ");
 
       Serial.print(millis());
       Serial.print(", ");
@@ -152,10 +153,11 @@ bool frequencySweepEasy(int pin) {
         double magnitude = sqrt(pow(real[i], 2) + pow(imag[i], 2));
         double impedance = 1 / (magnitude * gain[i]);
         dataFile.print(impedance);
-
+        dataFile.print(", ");
+        
         Serial.print(impedance);
         Serial.print(", ");
-
+        
         if(impedance > 500) {
           Serial.println(" "); 
           return true;
