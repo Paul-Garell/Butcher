@@ -137,12 +137,12 @@ bool frequencySweepEasy(int pin) {
       dataFile.print(normalP, 1);
       dataFile.print(", ");
 
-      Serial.print(millis());
-      Serial.print(", ");
-      Serial.print(pin);
-      Serial.print(", ");
-      Serial.print(normalP, 1);
-      Serial.print(", ");
+      // Serial.print(millis());
+      // Serial.print(", ");
+      // Serial.print(pin);
+      // Serial.print(", ");
+      // Serial.print(normalP, 1);
+      // Serial.print(", ");
       for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
         pressure = analogRead(pressureInput);
         pressure = (pressure - pressureZ) * 15 / (pressureM - pressureZ);
@@ -155,16 +155,16 @@ bool frequencySweepEasy(int pin) {
         dataFile.print(impedance);
         dataFile.print(", ");
         
-        Serial.print(impedance);
-        Serial.print(", ");
+        // Serial.print(impedance);
+        // Serial.print(", ");
         
         if(impedance > 500) {
-          Serial.println(" "); 
+          // Serial.println(" "); 
           return true;
         }
       }
       dataFile.println(" ");  
-      Serial.println(" ");   
+      // Serial.println(" ");   
       // Close the file
       dataFile.close();
     } 
