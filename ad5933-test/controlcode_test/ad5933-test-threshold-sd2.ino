@@ -128,11 +128,17 @@ bool frequencySweepEasy(int pin) {
     if (dataFile) {
       // Calculating and printing out the pressure information
       int cfreq = START_FREQ / 1000;
+      dataFile.print(pin);
+        dataFile.print(", ");
+        dataFile.print(millis());
+        dataFile.print(", ");
+        dataFile.print(normalP, 1);
 
       for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
         pressure = analogRead(pressureInput);
         pressure = (pressure - pressureZ) * 15 / (pressureM - pressureZ);
         normalP = abs((pressure * 6.89476) - 98);
+        dataFile.print(", ");
 
         // Compute impedance
         double magnitude = sqrt(pow(real[i], 2) + pow(imag[i], 2));
@@ -142,13 +148,7 @@ bool frequencySweepEasy(int pin) {
         if (impedance > impedanceMax){ 
           return true;
         }
-
-        dataFile.print(pin);
-        dataFile.print(", ");
-        dataFile.print(millis());
-        dataFile.print(", ");
-        dataFile.print(normalP, 1);
-        dataFile.print(", ");
+        
         dataFile.print(impedance);
 
       }
