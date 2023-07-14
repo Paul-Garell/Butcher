@@ -104,13 +104,16 @@ void setup(void)
   dataFile.close();
 }
 
+int pinNum = 1;
+
 void loop(void) {
   dac.setVoltage((Curvoltage * 4095) / 5, false);
-  int pinNum = 0;
-  while (!(frequencySweepEasy(pinNum)) && (pinNum < 8)) {
+  while (pinNum < 9) {
     selection(pinNum);
+    if (frequencySweepEasy(pinNum)) break;
     pinNum++;
   }
+  pinNum = 1;
   Curvoltage += .5;
   if (Curvoltage > 2.9) {
     Curvoltage = 0.5;
@@ -125,14 +128,21 @@ bool frequencySweepEasy(int pin) {
   if (AD5933::frequencySweep(real, imag, NUM_INCR + 1)) {
     // Open the data file in append mode
     dataFile = SD.open("data.csv", FILE_WRITE);
-    if (dataFile) {
+    if (!dataFile) {
       // Calculating and printing out the pressure information
       int cfreq = START_FREQ / 1000;
       dataFile.print(pin);
-        dataFile.print(", ");
-        dataFile.print(millis());
-        dataFile.print(", ");
-        dataFile.print(normalP, 1);
+      dataFile.print(", ");
+      dataFile.print(millis());
+      dataFile.print(", ");
+      dataFile.print(normalP, 1);
+      dataFile.print(", ");
+
+      Serial.print(millis());
+      Serial.print(", ");
+      Serial.print(pin);
+      Serial.print(", ");
+      Serial.print(normalP, 1);
 
       for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
         pressure = analogRead(pressureInput);
@@ -144,16 +154,21 @@ bool frequencySweepEasy(int pin) {
         double magnitude = sqrt(pow(real[i], 2) + pow(imag[i], 2));
         double impedance = 1 / (magnitude * gain[i]);
 
+        dataFile.print(impedance);
+        dataFile.print(", ");
+
+        Serial.print(", ");
+        Serial.print(impedance);
+        Serial.println(" "); 
+
         // Determine if impedance is too high
         if (impedance > impedanceMax){ 
+          Serial.print(" ");
           return true;
         }
-        
-        dataFile.print(impedance);
-
       }
       dataFile.println(" ");
-      
+      Serial.println(" "); 
       // Close the file
       dataFile.close();
     }
