@@ -120,7 +120,9 @@ bool frequencySweepEasy(int pin) {
       Serial.print(", ");
       Serial.print(impedance);
       // Checker
-      if(impedance > impedanceCheck) return true;
+      if(impedance > 500) {
+          return true;
+        }
     }
     Serial.println(" ");
   }
