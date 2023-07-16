@@ -85,6 +85,10 @@ void loop(void) {
     selection(curChannel);
     if (frequencySweepEasy(curChannel)) {
       break;
+    else {
+      if curChannel == 8 {
+        exportData()
+      } 
     }
   }
   Curvoltage += .5;
