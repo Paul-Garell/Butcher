@@ -1,8 +1,6 @@
 #include <Wire.h>
 #include "AD5933.h"
 #include <Adafruit_MCP4725.h>
-#include <SD.h>
-#include <SPI.h>
 
 #define START_FREQ  (10000)
 #define FREQ_INCR   (5000)
@@ -40,9 +38,6 @@ int normalP = 0;
 const int MAX_DATA_POINTS = 23;
 DataPoint dataPoints[MAX_DATA_POINTS];
 
-String filename = "data.csv";
-File dataFile;
-
 void setup(void) {
   pinMode(Signal, OUTPUT);
   for (i = 0; i < 4; i++) pinMode(sL[i], OUTPUT);
@@ -71,29 +66,15 @@ void setup(void) {
     Serial.println("Calibrated!");
   else
     Serial.println("Calibration failed...");
-
-  if (SD.begin(4)) {
-    Serial.println("SD card module is connected.");
-  } else {
-    Serial.println("SD card module is not detected. Check connections.");
-  }
 }
 
 void loop(void) {
-  dac.setVoltage((Curvoltage * 4095) / 5, false);
   for (curChannel = 1; curChannel <= 8; curChannel++) {
     selection(curChannel);
     if (frequencySweepEasy(curChannel)) {
+      printData(curChannel);
       break;
-    } else {
-      if (curChannel == 8) {
-        exportData();
-      }
     }
-  }
-  Curvoltage += .5;
-  if (Curvoltage > 2.9) {
-    Curvoltage = 0.5;
   }
 }
 
@@ -104,7 +85,6 @@ bool frequencySweepEasy(int pin) {
     int cfreq = START_FREQ / 1000;
     
     dataPoints[curChannel].pin = pin;
-    dataPoints[curChannel].pressure = normalP;
     dataPoints[curChannel].time = millis();
     for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
       pressure = analogRead(pressureInput);
@@ -115,6 +95,7 @@ bool frequencySweepEasy(int pin) {
       double impedance = 1 / (magnitude * gain[i]);
 
       dataPoints[curChannel].impedance[i] = impedance;
+      dataPoints[curChannel].pressure = normalP;
       
       if (impedance > 1850) {
         return true; // Indicate that data has been exported
@@ -130,29 +111,18 @@ void selection(int j) {
   digitalWrite(sL[2], MUXtable[j][2]);
 }
 
-void exportData() {
-  dataFile = SD.open(filename, FILE_WRITE);
-  if (dataFile) {
-    for (int i = 1; i <= 8; i++) {
-      dataFile.print(dataPoints[i].time);
-      dataFile.print(", ");
-      dataFile.print(dataPoints[i].pin);
-      dataFile.print(", ");
-      dataFile.print(dataPoints[i].pressure);
-      dataFile.print(", ");
-      
-      // Write impedance values
-      for (int j = 0; j < NUM_INCR + 1; j++) {
-        dataFile.print(dataPoints[i].impedance[j]);
-        if (j < NUM_INCR) {
-          dataFile.print(", ");
-        }
-      }
-      dataFile.println();
-    }
-    dataFile.close();
-    Serial.println("Data written to SD card.");
-  } else {
-    Serial.println("Failed to open data file on SD card!");
+void printData(int channel) {
+  Serial.println("Data for Channel: " + String(channel));
+  Serial.print("Pin: ");
+  Serial.println(dataPoints[channel].pin);
+  Serial.print("Pressure: ");
+  Serial.println(dataPoints[channel].pressure);
+  
+  for (int i = 0; i < NUM_INCR + 1; i++) {
+    Serial.print("Impedance[" + String(i) + "]: ");
+    Serial.println(dataPoints[channel].impedance[i]);
   }
+  Serial.println("-------------------------");
 }
+
+
