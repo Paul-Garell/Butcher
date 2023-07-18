@@ -115,6 +115,7 @@ bool frequencySweepEasy(int pin) {
       
       // Checker
       if (impedance > impedenceCheck) {
+        Serial.println(" ");
         return true;
       }
     }
@@ -126,7 +127,9 @@ bool frequencySweepEasy(int pin) {
 void findImpedanceNoPressure() {
   selection(8);
   int real, imag;
-  if (AD5933::singleFrequencyMeasurement(real, imag)) {
+  int cfreq = START_FREQ / 1000; // Starting frequency
+  
+  if (AD5933::frequencySweep(real, imag, 1)) {
     double magnitude = sqrt(pow(real, 2) + pow(imag, 2));
     double impedance = 1 / (magnitude * gain[0]);
 
@@ -135,6 +138,7 @@ void findImpedanceNoPressure() {
     impedenceCheck = 0; // Set default value to 0 if measurement fails
   }
 }
+
 
 void selection(int j) {
   digitalWrite(sL[0], MUXtable[j][0]);
