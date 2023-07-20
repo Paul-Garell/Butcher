@@ -8,7 +8,7 @@
 #define REF_RESIST  (300)
 
 // Threshold setup
-int impedenceCheck; // Define a high resistance here
+int impedanceCheck; // Define a high resistance here
 
 // Mux setup
 int Signal = 5;
@@ -38,13 +38,13 @@ float pressure;
 int normalP = 0;
 
 void setup(void) {
+  Serial.begin(9600);
   pinMode(Signal, OUTPUT);
   for (i = 0; i < 4; i++) pinMode(sL[i], OUTPUT);
 
   pinMode(A2, OUTPUT);
   digitalWrite(A2, LOW);
   dac.begin(0x60);
-  Serial.begin(9600);
   Wire.begin();
   Serial.println("AD5933 Test Started!");
 
@@ -62,12 +62,31 @@ void setup(void) {
   digitalWrite(sL[0], MUXtable[0][0]);
   digitalWrite(sL[1], MUXtable[0][1]);
   digitalWrite(sL[2], MUXtable[0][2]);
-
   if (AD5933::calibrate(gain, phase, REF_RESIST, NUM_INCR + 1)) {
-    findImpedanceNoPressure(); // Call the function to determine the high resistance value
     Serial.println("Calibrated!");
   } else {
     Serial.println("Calibration failed...");
+  }
+  selection(7);
+  // Create arrays to hold the data for the frequency sweep
+  int real[NUM_INCR + 1], imag[NUM_INCR + 1];
+  int cfreq = START_FREQ / 1000; // Starting frequency
+
+  if (AD5933::frequencySweep(real, imag, NUM_INCR + 1)) {
+    double magnitude = sqrt(pow(real[0], 2) + pow(imag[0], 2));
+    double impedance = 1 / (magnitude * gain[0]);
+    for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
+      // Compute impedance
+      double magnitude = sqrt(pow(real[i], 2) + pow(imag[i], 2));
+      double impedance = 1 / (magnitude * gain[i]);
+    }
+
+    impedanceCheck = (int)impedance; // Set the high resistance value
+    Serial.print("impedanceCheck value: ");
+    Serial.println(impedanceCheck); 
+  } else {
+    impedanceCheck = 0; // Set default value to 0 if measurement fails
+    Serial.println("Failed to obtain impedance value!");
   }
 }
 
@@ -114,7 +133,7 @@ bool frequencySweepEasy(int pin) {
       Serial.print(impedance);
       
       // Checker
-      if (impedance > impedenceCheck) {
+      if (impedance > impedanceCheck) {
         Serial.println(" ");
         return true;
       }
@@ -123,22 +142,6 @@ bool frequencySweepEasy(int pin) {
   }
   return false;
 }
-
-void findImpedanceNoPressure() {
-  selection(8);
-  int real, imag;
-  int cfreq = START_FREQ / 1000; // Starting frequency
-  
-  if (AD5933::frequencySweep(real, imag, 1)) {
-    double magnitude = sqrt(pow(real, 2) + pow(imag, 2));
-    double impedance = 1 / (magnitude * gain[0]);
-
-    impedenceCheck = (int)impedance; // Set the high resistance value
-  } else {
-    impedenceCheck = 0; // Set default value to 0 if measurement fails
-  }
-}
-
 
 void selection(int j) {
   digitalWrite(sL[0], MUXtable[j][0]);
