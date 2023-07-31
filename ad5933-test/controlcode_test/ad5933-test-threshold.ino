@@ -37,11 +37,12 @@ const int pressurePSI = 15;
 float pressure;
 int normalP = 0;
 
+
 void setup(void) {
   Serial.begin(9600);
   pinMode(Signal, OUTPUT);
   for (i = 0; i < 4; i++) pinMode(sL[i], OUTPUT);
-
+  
   pinMode(A2, OUTPUT);
   digitalWrite(A2, LOW);
   dac.begin(0x60);
@@ -75,15 +76,11 @@ void setup(void) {
   if (AD5933::frequencySweep(real, imag, NUM_INCR + 1)) {
     double magnitude = sqrt(pow(real[0], 2) + pow(imag[0], 2));
     double impedance = 1 / (magnitude * gain[0]);
-    for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
-      // Compute impedance
-      double magnitude = sqrt(pow(real[i], 2) + pow(imag[i], 2));
-      double impedance = 1 / (magnitude * gain[i]);
-    }
-
+    
     impedanceCheck = (int)impedance; // Set the high resistance value
     Serial.print("impedanceCheck value: ");
     Serial.println(impedanceCheck); 
+    impedanceCheck = 10000000;
   } else {
     impedanceCheck = 0; // Set default value to 0 if measurement fails
     Serial.println("Failed to obtain impedance value!");
@@ -94,7 +91,6 @@ int curChannel = 1;
 void loop(void) {
   dac.setVoltage((Curvoltage * 4095) / 5, false);
   for (curChannel = 1; curChannel <= 8; curChannel++) {
-    Serial.print(curChannel);
     selection(curChannel);
     if (frequencySweepEasy(curChannel)) break;
   }
