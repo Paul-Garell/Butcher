@@ -130,6 +130,9 @@ bool frequencySweepEasy(int pin) {
       // Calculating and printing out the pressure information
       int cfreq = START_FREQ / 1000;
       // Time elapsed
+      pressure = analogRead(pressureInput);
+      pressure = (pressure - pressureZ) * 15 / (pressureM - pressureZ);
+      normalP = abs((pressure * 6.89476) - 98);
       dataFile.print(millis());
       dataFile.print(", ");
       dataFile.print(pin);
@@ -144,9 +147,7 @@ bool frequencySweepEasy(int pin) {
       Serial.print(normalP, 1);
 
       for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
-        pressure = analogRead(pressureInput);
-        pressure = (pressure - pressureZ) * 15 / (pressureM - pressureZ);
-        normalP = abs((pressure * 6.89476) - 98);
+        
         dataFile.print(", ");
         
         // Compute impedance
