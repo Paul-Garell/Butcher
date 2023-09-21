@@ -6,5 +6,8 @@ This contains the code to run on Arduino Uno/Due to calculate frequency sweeps u
 
 This repo also will contain the code for communication between the Rasberry pi and Arduino. 
 
+PCB board designs can be found under hardware. 
 
-Never push non-compiling code.
+Uno code (working) can be found under Arduino
+
+Raspberry Pi information can be found under RasPi
