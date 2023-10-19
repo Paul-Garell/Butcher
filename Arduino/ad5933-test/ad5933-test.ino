@@ -128,7 +128,8 @@ void loop(void) {
 
     
     dac.setVoltage((Curvoltage*4095)/5, false);
-    for (i = 0; i < 4; i++) {
+    Serial.println((Curvoltage*4095)/5);
+    for (i = 0; i < 5; i++) {
       selection(i);
     }
 
