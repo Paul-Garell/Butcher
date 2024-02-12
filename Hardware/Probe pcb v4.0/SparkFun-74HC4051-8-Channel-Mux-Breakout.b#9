@@ -818,7 +818,6 @@ These rules have been curated by SparkFuns DFM commitee. After doing much resear
 <attribute name="PROD_ID" value="IC-13334" x="1.27" y="13.97" size="1.778" layer="27" display="off"/>
 </element>
 <element name="JP1" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="2X08" package3d_urn="urn:adsk.eagle:package:22481/2" value="" x="5.08" y="30.48" smashed="yes" rot="R90">
-<attribute name="NAME" x="1.905" y="20.32" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="POPULARITY" value="6" x="5.08" y="30.48" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="9.525" y="20.32" size="1.27" layer="27" rot="R90"/>
 </element>

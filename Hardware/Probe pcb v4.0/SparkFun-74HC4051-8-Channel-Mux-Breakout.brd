@@ -191,6 +191,7 @@
 <text x="8.89" y="36.83" size="0.6096" layer="21" font="vector">Probe V4.0
 PG | 6/14/22</text>
 <dimension x1="-6.35" y1="1.27" x2="16.51" y2="1.27" x3="5.08" y3="-5.08" textsize="1.778" layer="1"/>
+<dimension x1="-6.35" y1="1.27" x2="-6.35" y2="40.64" x3="-11.43" y3="20.955" textsize="1.778" layer="1"/>
 </plain>
 <libraries>
 <library name="SparkFun-Capacitors">

@@ -154,11 +154,12 @@
 <layer number="255" name="routoute" color="7" fill="1" visible="no" active="yes"/>
 </layers>
 <board>
+<fusionsync huburn="a.cGVyc29uYWw6dWUyYjk1ZDM5" projecturn="a.cGVyc29uYWw6dWUyYjk1ZDM5IzIwMTkwNDA2MTg2ODE3MTgx" f3durn="urn:adsk.wipprod:dm.lineage:ac7G3z-SRYqWTtEfqjarTQ" pcbguid="50a92636-d8c6-4d0e-8864-3c2a2cd5a449" lastpulledtime="" lastsyncedchangeguid="" latestrevisionid="9057c2b2-7a3a-4996-bfa2-617160364fbe" lastsyncedrevisionid="9057c2b2-7a3a-4996-bfa2-617160364fbe" lastboardhashguid="6e28b3e8-657f-da74-d9bb-0ce1b347e0a9" lastpushedtime="2022-06-16T14:44:09Z" linktopcb3d="true"/>
 <plain>
-<wire x1="-5.08" y1="40.64" x2="-5.08" y2="1.27" width="0.2032" layer="20"/>
-<wire x1="-5.08" y1="1.27" x2="15.24" y2="1.27" width="0.2032" layer="20"/>
-<wire x1="15.24" y1="1.27" x2="15.24" y2="40.64" width="0.2032" layer="20"/>
-<wire x1="15.24" y1="40.64" x2="-5.08" y2="40.64" width="0.2032" layer="20"/>
+<wire x1="-6.35" y1="40.64" x2="-6.35" y2="1.27" width="0.2032" layer="20"/>
+<wire x1="-6.35" y1="1.27" x2="16.51" y2="1.27" width="0.2032" layer="20"/>
+<wire x1="16.51" y1="1.27" x2="16.51" y2="40.64" width="0.2032" layer="20"/>
+<wire x1="16.51" y1="40.64" x2="-6.35" y2="40.64" width="0.2032" layer="20"/>
 <dimension x1="0" y1="0" x2="6.35" y2="2.54" x3="-1.27" y3="1.27" textsize="1.016" textratio="15" layer="47" dtype="vertical" unit="inch" precision="3"/>
 <dimension x1="0" y1="0" x2="1.27" y2="6.35" x3="-3.81" y3="3.175" textsize="1.016" textratio="15" layer="47" dtype="vertical" unit="inch" precision="3"/>
 <dimension x1="0" y1="0" x2="6.35" y2="25.4" x3="-6.35" y3="12.7" textsize="1.016" textratio="15" layer="47" dtype="vertical" unit="inch" precision="3"/>
@@ -875,20 +876,19 @@ These rules have been curated by SparkFuns DFM commitee. After doing much resear
 <wire x1="8.04" y1="11.43" x2="8.89" y2="11.43" width="0.1778" layer="1"/>
 <wire x1="12.7" y1="13.97" x2="12.7" y2="14.25" width="0.1778" layer="1"/>
 <wire x1="12.7" y1="14.25" x2="11.96" y2="14.99" width="0.1778" layer="1"/>
-<wire x1="3.81" y1="5.08" x2="3.81" y2="7.62" width="0.1778" layer="1"/>
-<via x="3.81" y="7.62" extent="1-16" drill="0.7"/>
-<wire x1="3.81" y1="7.62" x2="3.81" y2="8.04" width="0.1778" layer="1"/>
-<wire x1="3.81" y1="8.04" x2="5.08" y2="9.31" width="0.1778" layer="1"/>
-<wire x1="3.81" y1="7.62" x2="7.62" y2="11.43" width="0.1778" layer="16"/>
-<wire x1="7.62" y1="11.43" x2="8.89" y2="11.43" width="0.1778" layer="16"/>
-<wire x1="9.3655" y1="7.29090625" x2="9.83090625" y2="6.8255" width="0.1778" layer="16"/>
-<wire x1="14.29909375" y1="6.8255" x2="14.7645" y2="7.29090625" width="0.1778" layer="16"/>
-<wire x1="9.83090625" y1="6.8255" x2="14.29909375" y2="6.8255" width="0.1778" layer="16"/>
-<wire x1="14.7645" y1="7.29090625" x2="14.7645" y2="11.75909375" width="0.1778" layer="16"/>
-<wire x1="12.7" y1="13.82359375" x2="12.7" y2="13.97" width="0.1778" layer="16"/>
-<wire x1="14.7645" y1="11.75909375" x2="12.7" y2="13.82359375" width="0.1778" layer="16"/>
-<wire x1="8.89" y1="11.43" x2="9.3655" y2="10.9545" width="0.1778" layer="16"/>
-<wire x1="9.3655" y1="10.9545" x2="9.3655" y2="7.29090625" width="0.1778" layer="16"/>
+<polygon width="0.1778" layer="1">
+<vertex x="-6.35" y="1.27"/>
+<vertex x="-6.35" y="40.64"/>
+<vertex x="16.51" y="40.64"/>
+<vertex x="16.51" y="1.27"/>
+</polygon>
+<polygon width="0.1778" layer="16">
+<vertex x="-6.35" y="1.27"/>
+<vertex x="-6.35" y="40.64"/>
+<vertex x="16.51" y="40.64"/>
+<vertex x="16.51" y="1.27"/>
+</polygon>
+<via x="-2.54" y="38.1" extent="1-16" drill="0.7"/>
 </signal>
 <signal name="Z">
 <contactref element="J2" pad="6"/>
@@ -1246,6 +1246,11 @@ which will not be processed correctly with this version.
 Since Version 8.2, EAGLE supports online libraries. The ids
 of those online libraries will not be understood (or retained)
 with this version.
+</note>
+<note version="8.3" severity="warning">
+Since Version 8.3, EAGLE supports Fusion synchronisation.
+This feature will not be available in this version and saving
+the document will break the link to the Fusion PCB feature.
 </note>
 <note version="8.3" severity="warning">
 Since Version 8.3, EAGLE supports URNs for individual library

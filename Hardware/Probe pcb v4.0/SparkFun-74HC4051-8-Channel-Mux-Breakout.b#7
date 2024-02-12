@@ -188,6 +188,8 @@
 <text x="13.97" y="2.54" size="0.6096" layer="25">_|</text>
 <text x="-3.81" y="15.24" size="0.6096" layer="25">4051</text>
 <text x="5.08" y="16.51" size="0.6096" layer="25">4051</text>
+<text x="8.89" y="38.1" size="0.6096" layer="21" font="vector">Probe V4.0
+PG | 6/14/22</text>
 </plain>
 <libraries>
 <library name="SparkFun-Capacitors">
@@ -1226,6 +1228,10 @@ These rules have been curated by SparkFuns DFM commitee. After doing much resear
 </board>
 </drawing>
 <compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
 <note version="8.2" severity="warning">
 Since Version 8.2, EAGLE supports online libraries. The ids
 of those online libraries will not be understood (or retained)

@@ -9,7 +9,7 @@
 #include "AD5933.h"
 #define START_FREQ  (10000)
 #define FREQ_INCR   (5000)
-#define NUM_INCR    (18)
+#define NUM_INCR    (10) //was 18, changing to 10 for demo
 #define REF_RESIST  (300)
 bool setter = true;
 int follow = 0;
@@ -129,7 +129,7 @@ void loop(void) {
     
     dac.setVoltage((Curvoltage*4095)/5, false);
     Serial.println((Curvoltage*4095)/5);
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 3; i++) {
       selection(i);
     }
 

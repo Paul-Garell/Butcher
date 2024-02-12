@@ -3,7 +3,7 @@
 <eagle version="9.6.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
@@ -155,10 +155,10 @@
 </layers>
 <board>
 <plain>
-<wire x1="-6.35" y1="41.91" x2="-6.35" y2="1.27" width="0.2032" layer="20"/>
-<wire x1="-6.35" y1="1.27" x2="16.51" y2="1.27" width="0.2032" layer="20"/>
-<wire x1="16.51" y1="1.27" x2="16.51" y2="41.91" width="0.2032" layer="20"/>
-<wire x1="16.51" y1="41.91" x2="-6.35" y2="41.91" width="0.2032" layer="20"/>
+<wire x1="-5.08" y1="40.64" x2="-5.08" y2="1.27" width="0.2032" layer="20"/>
+<wire x1="-5.08" y1="1.27" x2="15.24" y2="1.27" width="0.2032" layer="20"/>
+<wire x1="15.24" y1="1.27" x2="15.24" y2="40.64" width="0.2032" layer="20"/>
+<wire x1="15.24" y1="40.64" x2="-5.08" y2="40.64" width="0.2032" layer="20"/>
 <dimension x1="0" y1="0" x2="6.35" y2="2.54" x3="-1.27" y3="1.27" textsize="1.016" textratio="15" layer="47" dtype="vertical" unit="inch" precision="3"/>
 <dimension x1="0" y1="0" x2="1.27" y2="6.35" x3="-3.81" y3="3.175" textsize="1.016" textratio="15" layer="47" dtype="vertical" unit="inch" precision="3"/>
 <dimension x1="0" y1="0" x2="6.35" y2="25.4" x3="-6.35" y3="12.7" textsize="1.016" textratio="15" layer="47" dtype="vertical" unit="inch" precision="3"/>
@@ -167,28 +167,27 @@
 <dimension x1="0" y1="0" x2="6.35" y2="2.54" x3="3.175" y3="-5.08" textsize="1.016" textratio="15" layer="47" dtype="horizontal" unit="inch" precision="3"/>
 <dimension x1="0" y1="0" x2="11.43" y2="1.27" x3="5.715" y3="-7.62" textsize="1.016" textratio="15" layer="47" dtype="horizontal" unit="inch" precision="3"/>
 <dimension x1="0" y1="0" x2="12.7" y2="0" x3="6.35" y3="-10.16" textsize="1.016" textratio="15" layer="47" dtype="horizontal" unit="inch" precision="3"/>
-<text x="3.81" y="8.89" size="0.6096" layer="25" rot="R90">0.1uf</text>
+<text x="3.81" y="7.62" size="0.6096" layer="25" rot="R90">0.1uf</text>
 <text x="8.89" y="8.89" size="0.6096" layer="25" rot="R90">10kΩ</text>
-<text x="-5.08" y="2.54" size="0.6096" layer="25" rot="R90">VCC</text>
-<text x="2.54" y="2.54" size="0.6096" layer="25" rot="R90">GND</text>
-<text x="5.08" y="2.54" size="0.6096" layer="25" rot="R90">S0</text>
-<text x="7.62" y="2.54" size="0.6096" layer="25" rot="R90">S1</text>
-<text x="10.16" y="2.54" size="0.6096" layer="25" rot="R90">S2</text>
-<text x="12.7" y="2.54" size="0.6096" layer="25" rot="R90">E</text>
-<text x="-2.54" y="2.54" size="0.6096" layer="25" rot="R90">Z2</text>
-<text x="0" y="2.54" size="0.6096" layer="25" rot="R90">Z1</text>
-<text x="-5.08" y="2.54" size="0.6096" layer="25">___</text>
-<text x="-2.54" y="2.54" size="0.6096" layer="25">___</text>
-<text x="0" y="2.54" size="0.6096" layer="25">___</text>
-<text x="2.54" y="2.54" size="0.6096" layer="25">___</text>
-<text x="5.08" y="2.54" size="0.6096" layer="25">___</text>
-<text x="7.62" y="2.54" size="0.6096" layer="25">___</text>
-<text x="10.16" y="2.54" size="0.6096" layer="25">___</text>
-<text x="12.7" y="2.54" size="0.6096" layer="25">___</text>
+<text x="-3.81" y="2.54" size="0.6096" layer="25" rot="R90">VCC</text>
+<text x="3.81" y="2.54" size="0.6096" layer="25" rot="R90">GND</text>
+<text x="6.35" y="2.54" size="0.6096" layer="25" rot="R90">S0</text>
+<text x="8.89" y="2.54" size="0.6096" layer="25" rot="R90">S1</text>
+<text x="11.43" y="2.54" size="0.6096" layer="25" rot="R90">S2</text>
+<text x="13.97" y="2.54" size="0.6096" layer="25" rot="R90">E</text>
+<text x="-1.27" y="2.54" size="0.6096" layer="25" rot="R90">Z2</text>
+<text x="1.27" y="2.54" size="0.6096" layer="25" rot="R90">Z1</text>
+<text x="-3.81" y="2.54" size="0.6096" layer="25">___</text>
+<text x="-1.27" y="2.54" size="0.6096" layer="25">___</text>
+<text x="1.27" y="2.54" size="0.6096" layer="25">___</text>
+<text x="3.81" y="2.54" size="0.6096" layer="25">___</text>
+<text x="6.35" y="2.54" size="0.6096" layer="25">___</text>
+<text x="8.89" y="2.54" size="0.6096" layer="25">___</text>
+<text x="11.43" y="2.54" size="0.6096" layer="25">___</text>
 <text x="13.97" y="2.54" size="0.6096" layer="25">_|</text>
 <text x="-3.81" y="15.24" size="0.6096" layer="25">4051</text>
 <text x="5.08" y="16.51" size="0.6096" layer="25">4051</text>
-<text x="8.89" y="38.1" size="0.6096" layer="21" font="vector">Probe V4.0
+<text x="8.89" y="36.83" size="0.6096" layer="21" font="vector">Probe V4.0
 PG | 6/14/22</text>
 </plain>
 <libraries>
@@ -863,21 +862,21 @@ These rules have been curated by SparkFuns DFM commitee. After doing much resear
 <contactref element="U1" pad="8"/>
 <contactref element="C1" pad="2"/>
 <polygon width="0.1778" layer="1" isolate="0.254">
-<vertex x="-6.35" y="1.27"/>
-<vertex x="-6.35" y="41.91"/>
-<vertex x="16.51" y="41.91"/>
-<vertex x="16.51" y="1.27"/>
+<vertex x="-5.08" y="1.27"/>
+<vertex x="-5.08" y="40.64"/>
+<vertex x="15.24" y="40.64"/>
+<vertex x="15.24" y="1.27"/>
 </polygon>
 <polygon width="0.1778" layer="16" isolate="0.254">
-<vertex x="-6.35" y="1.27"/>
-<vertex x="-6.35" y="41.91"/>
-<vertex x="16.51" y="41.91"/>
-<vertex x="16.51" y="1.27"/>
+<vertex x="-5.08" y="1.27"/>
+<vertex x="-5.08" y="40.64"/>
+<vertex x="15.24" y="40.64"/>
+<vertex x="15.24" y="1.27"/>
 </polygon>
-<via x="-3.81" y="38.1" extent="1-16" drill="0.7"/>
 <via x="8.89" y="11.43" extent="1-16" drill="0.7"/>
 <via x="12.7" y="13.97" extent="1-16" drill="0.7"/>
 <via x="5.08" y="12.7" extent="1-16" drill="0.7"/>
+<wire x1="8.89" y1="11.43" x2="12.7" y2="13.97" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="Z">
 <contactref element="J2" pad="6"/>
