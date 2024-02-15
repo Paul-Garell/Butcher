@@ -21700,7 +21700,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <sheets>
 <sheet>
 <plain>
-<text x="241.3" y="106.68" size="1.778" layer="91">I2C Address
+<text x="259.08" y="109.22" size="1.778" layer="91">I2C Address
 GND = 1100000 (0x60) (Default)
 VCC - 1100001 (0x61)</text>
 <text x="246.38" y="185.42" size="1.778" layer="91">Vcc = 2.7V to 5.5V</text>

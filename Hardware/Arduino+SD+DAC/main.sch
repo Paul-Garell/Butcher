@@ -21667,7 +21667,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="JP3" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X10" device="" package3d_urn="urn:adsk.eagle:package:22406/2"/>
 <part name="JP4" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X4" device="" package3d_urn="urn:adsk.eagle:package:22407/2"/>
 <part name="JP5" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X4" device="" package3d_urn="urn:adsk.eagle:package:22407/2"/>
-<part name="JP6" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X4" device="" package3d_urn="urn:adsk.eagle:package:22407/2"/>
 <part name="IC3" library="40xx" deviceset="4050" device="D"/>
 <part name="X2" library="adafruit" deviceset="MICROSD" device=""/>
 <part name="+3V6" library="supply1" deviceset="+3V3" device=""/>
@@ -21696,14 +21695,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="SJ3" library="SparkFun-Passives" deviceset="JUMPER-PAD-3-NC_BY_TRACE" device=""/>
 <part name="SJ4" library="SparkFun-Passives" deviceset="JUMPER-PAD-3-2OF3_NC_BY_PASTE" device="" value="JUMPER-PAD-3-2OF3_NC_BY_PASTE"/>
 <part name="R8" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="10k"/>
+<part name="JP1" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X10" device="" package3d_urn="urn:adsk.eagle:package:22406/2"/>
 </parts>
 <sheets>
 <sheet>
 <plain>
-<text x="259.08" y="109.22" size="1.778" layer="91">I2C Address
-GND = 1100000 (0x60) (Default)
-VCC - 1100001 (0x61)</text>
-<text x="246.38" y="185.42" size="1.778" layer="91">Vcc = 2.7V to 5.5V</text>
 </plain>
 <instances>
 <instance part="J1" gate="G$1" x="22.86" y="25.4" smashed="yes">
@@ -21757,10 +21753,6 @@ VCC - 1100001 (0x61)</text>
 <instance part="JP5" gate="A" x="144.78" y="-7.62" smashed="yes">
 <attribute name="NAME" x="138.43" y="0.635" size="1.778" layer="95"/>
 <attribute name="VALUE" x="138.43" y="-15.24" size="1.778" layer="96"/>
-</instance>
-<instance part="JP6" gate="A" x="160.02" y="10.16" smashed="yes">
-<attribute name="NAME" x="153.67" y="18.415" size="1.778" layer="95"/>
-<attribute name="VALUE" x="153.67" y="2.54" size="1.778" layer="96"/>
 </instance>
 <instance part="IC3" gate="A" x="45.72" y="137.16" smashed="yes">
 <attribute name="NAME" x="48.26" y="140.335" size="1.778" layer="95"/>
@@ -21873,11 +21865,15 @@ VCC - 1100001 (0x61)</text>
 </instance>
 <instance part="SJ4" gate="G$1" x="251.46" y="127" smashed="yes" rot="R270">
 <attribute name="NAME" x="251.841" y="124.46" size="1.778" layer="95" rot="R270"/>
-<attribute name="VALUE" x="249.555" y="124.46" size="1.778" layer="96" rot="R270"/>
+<attribute name="VALUE" x="247.015" y="142.24" size="1.778" layer="96" rot="R270"/>
 </instance>
 <instance part="R8" gate="G$1" x="238.76" y="127" smashed="yes">
 <attribute name="NAME" x="234.95" y="128.4986" size="1.778" layer="95"/>
 <attribute name="VALUE" x="234.95" y="123.698" size="1.778" layer="96"/>
+</instance>
+<instance part="JP1" gate="A" x="127" y="5.08" smashed="yes">
+<attribute name="NAME" x="120.65" y="18.415" size="1.778" layer="95"/>
+<attribute name="VALUE" x="120.65" y="-12.7" size="1.778" layer="96"/>
 </instance>
 </instances>
 <busses>
@@ -21994,6 +21990,14 @@ VCC - 1100001 (0x61)</text>
 <wire x1="231.14" y1="124.46" x2="231.14" y2="127" width="0.1524" layer="91"/>
 <wire x1="231.14" y1="127" x2="233.68" y2="127" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="JP3" gate="A" pin="1"/>
+<wire x1="149.86" y1="48.26" x2="142.24" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="JP3" gate="A" pin="2"/>
+<wire x1="149.86" y1="45.72" x2="142.24" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="142.24" y1="45.72" x2="142.24" y2="48.26" width="0.1524" layer="91"/>
+<label x="139.7" y="48.26" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="N$3" class="0">
 <segment>
@@ -22020,13 +22024,9 @@ VCC - 1100001 (0x61)</text>
 <net name="N$20" class="0">
 <segment>
 <pinref part="U2" gate="U1" pin="PC0(ADC0)"/>
-<wire x1="106.68" y1="38.1" x2="109.22" y2="38.1" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$21" class="0">
-<segment>
-<pinref part="U2" gate="U1" pin="PC1(ADC1)"/>
-<wire x1="106.68" y1="35.56" x2="111.76" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="38.1" x2="119.38" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="119.38" y1="38.1" x2="119.38" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="119.38" y1="43.18" x2="137.16" y2="43.18" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$22" class="0">
@@ -22038,13 +22038,10 @@ VCC - 1100001 (0x61)</text>
 <net name="N$23" class="0">
 <segment>
 <pinref part="JP3" gate="A" pin="4"/>
-<wire x1="134.62" y1="40.64" x2="149.86" y2="40.64" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$24" class="0">
-<segment>
-<pinref part="JP3" gate="A" pin="5"/>
-<wire x1="134.62" y1="38.1" x2="149.86" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="40.64" x2="149.86" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="40.64" x2="121.92" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="U2" gate="U1" pin="PC1(ADC1)"/>
+<wire x1="121.92" y1="35.56" x2="106.68" y2="35.56" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="5V" class="0">
@@ -22155,25 +22152,6 @@ VCC - 1100001 (0x61)</text>
 <wire x1="58.42" y1="43.18" x2="58.42" y2="45.72" width="0.1524" layer="91"/>
 <junction x="58.42" y="43.18"/>
 <label x="55.88" y="40.64" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="N$1" class="0">
-<segment>
-<pinref part="JP6" gate="A" pin="1"/>
-<wire x1="157.48" y1="15.24" x2="152.4" y2="15.24" width="0.1524" layer="91"/>
-<wire x1="152.4" y1="15.24" x2="152.4" y2="12.7" width="0.1524" layer="91"/>
-<pinref part="JP6" gate="A" pin="4"/>
-<wire x1="152.4" y1="12.7" x2="152.4" y2="10.16" width="0.1524" layer="91"/>
-<wire x1="152.4" y1="10.16" x2="152.4" y2="7.62" width="0.1524" layer="91"/>
-<wire x1="152.4" y1="7.62" x2="152.4" y2="2.54" width="0.1524" layer="91"/>
-<wire x1="157.48" y1="7.62" x2="152.4" y2="7.62" width="0.1524" layer="91"/>
-<junction x="152.4" y="7.62"/>
-<pinref part="JP6" gate="A" pin="3"/>
-<wire x1="157.48" y1="10.16" x2="152.4" y2="10.16" width="0.1524" layer="91"/>
-<junction x="152.4" y="10.16"/>
-<pinref part="JP6" gate="A" pin="2"/>
-<wire x1="157.48" y1="12.7" x2="152.4" y2="12.7" width="0.1524" layer="91"/>
-<junction x="152.4" y="12.7"/>
 </segment>
 </net>
 <net name="N$35" class="0">
@@ -22372,19 +22350,103 @@ VCC - 1100001 (0x61)</text>
 <net name="N$2" class="0">
 <segment>
 <pinref part="U2" gate="U1" pin="PC2(ADC2)"/>
-<wire x1="106.68" y1="33.02" x2="114.3" y2="33.02" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$5" class="0">
-<segment>
-<pinref part="U2" gate="U1" pin="PC3(ADC3)"/>
-<wire x1="106.68" y1="30.48" x2="116.84" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="33.02" x2="127" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="127" y1="33.02" x2="127" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="JP3" gate="A" pin="5"/>
+<wire x1="127" y1="38.1" x2="149.86" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$7" class="0">
 <segment>
 <pinref part="JP3" gate="A" pin="6"/>
-<wire x1="137.16" y1="35.56" x2="149.86" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="35.56" x2="149.86" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="35.56" x2="129.54" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="U2" gate="U1" pin="PC3(ADC3)"/>
+<wire x1="129.54" y1="30.48" x2="106.68" y2="30.48" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="U2" gate="U1" pin="PD0(RXD)"/>
+<pinref part="JP1" gate="A" pin="1"/>
+<wire x1="106.68" y1="15.24" x2="124.46" y2="15.24" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$5" class="0">
+<segment>
+<pinref part="JP1" gate="A" pin="2"/>
+<pinref part="U2" gate="U1" pin="PD1(TXD)"/>
+<wire x1="124.46" y1="12.7" x2="106.68" y2="12.7" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$6" class="0">
+<segment>
+<pinref part="U2" gate="U1" pin="PD2(INT0)"/>
+<pinref part="JP1" gate="A" pin="3"/>
+<wire x1="106.68" y1="10.16" x2="124.46" y2="10.16" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$8" class="0">
+<segment>
+<pinref part="JP1" gate="A" pin="4"/>
+<pinref part="U2" gate="U1" pin="PD3(INT1)"/>
+<wire x1="124.46" y1="7.62" x2="106.68" y2="7.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$9" class="0">
+<segment>
+<pinref part="U2" gate="U1" pin="PD5(T1)"/>
+<wire x1="106.68" y1="2.54" x2="114.3" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="2.54" x2="114.3" y2="5.08" width="0.1524" layer="91"/>
+<pinref part="JP1" gate="A" pin="5"/>
+<wire x1="114.3" y1="5.08" x2="124.46" y2="5.08" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$14" class="0">
+<segment>
+<pinref part="JP1" gate="A" pin="6"/>
+<wire x1="124.46" y1="2.54" x2="116.84" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="116.84" y1="2.54" x2="116.84" y2="0" width="0.1524" layer="91"/>
+<pinref part="U2" gate="U1" pin="PD6(AIN0)"/>
+<wire x1="116.84" y1="0" x2="106.68" y2="0" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$15" class="0">
+<segment>
+<pinref part="U2" gate="U1" pin="PD7(AIN1)"/>
+<wire x1="106.68" y1="-2.54" x2="119.38" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="119.38" y1="-2.54" x2="119.38" y2="0" width="0.1524" layer="91"/>
+<pinref part="JP1" gate="A" pin="7"/>
+<wire x1="119.38" y1="0" x2="124.46" y2="0" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$16" class="0">
+<segment>
+<pinref part="JP1" gate="A" pin="8"/>
+<wire x1="124.46" y1="-2.54" x2="121.92" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="-2.54" x2="121.92" y2="-5.08" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="-5.08" x2="106.68" y2="-5.08" width="0.1524" layer="91"/>
+<pinref part="U2" gate="U1" pin="PB0(ICP)"/>
+<wire x1="106.68" y1="-5.08" x2="106.68" y2="-7.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="SS" class="0">
+<segment>
+<pinref part="U2" gate="U1" pin="PB1(OC1A)"/>
+<wire x1="106.68" y1="-10.16" x2="119.38" y2="-10.16" width="0.1524" layer="91"/>
+<label x="119.38" y="-10.16" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="JP1" gate="A" pin="9"/>
+<wire x1="124.46" y1="-5.08" x2="129.54" y2="-5.08" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$18" class="0">
+<segment>
+<pinref part="U2" gate="U1" pin="PB2(SS/OC1B)"/>
+<wire x1="106.68" y1="-12.7" x2="124.46" y2="-12.7" width="0.1524" layer="91"/>
+<pinref part="JP1" gate="A" pin="10"/>
+<wire x1="124.46" y1="-12.7" x2="124.46" y2="-7.62" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
@@ -22393,10 +22455,6 @@ VCC - 1100001 (0x61)</text>
 </schematic>
 </drawing>
 <compatibility>
-<note version="6.3" minversion="6.2.2" severity="warning">
-Since Version 6.2.2 text objects can contain more than one line,
-which will not be processed correctly with this version.
-</note>
 <note version="8.2" severity="warning">
 Since Version 8.2, EAGLE supports online libraries. The ids
 of those online libraries will not be understood (or retained)
