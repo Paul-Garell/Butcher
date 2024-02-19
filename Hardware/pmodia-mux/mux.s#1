@@ -269,7 +269,7 @@ Source: &lt;a href= "http://www.hirose.co.jp/cataloge_hp/e58605370.pdf"&gt;Data 
 <library name="padLarge">
 <packages>
 <package name="PAD">
-<smd name="P$1" x="0" y="0" dx="0.635" dy="0.635" layer="1"/>
+<smd name="P$1" x="0" y="0" dx="1.016" dy="1.016" layer="1"/>
 </package>
 </packages>
 <symbols>
