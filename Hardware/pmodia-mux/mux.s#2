@@ -76,7 +76,7 @@
 <library name="pad">
 <packages>
 <package name="PAD">
-<smd name="P$1" x="0" y="0" dx="0.635" dy="0.635" layer="1"/>
+<smd name="P$1" x="0" y="0" dx="0.254" dy="0.254" layer="1"/>
 </package>
 </packages>
 <symbols>
@@ -266,6 +266,36 @@ Source: &lt;a href= "http://www.hirose.co.jp/cataloge_hp/e58605370.pdf"&gt;Data 
 </deviceset>
 </devicesets>
 </library>
+<library name="padLarge">
+<packages>
+<package name="PAD">
+<smd name="P$1" x="0" y="0" dx="0.635" dy="0.635" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="PAD">
+<pin name="P$1" x="0" y="0" length="middle"/>
+<circle x="0" y="0" radius="2.54" width="0.254" layer="94"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="PAD">
+<gates>
+<gate name="G$1" symbol="PAD" x="0" y="0"/>
+</gates>
+<devices>
+<device name="PAD" package="PAD">
+<connects>
+<connect gate="G$1" pin="P$1" pad="P$1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -283,8 +313,8 @@ Source: &lt;a href= "http://www.hirose.co.jp/cataloge_hp/e58605370.pdf"&gt;Data 
 <part name="U$5" library="pad" deviceset="PAD" device="PAD"/>
 <part name="U$6" library="pad" deviceset="PAD" device="PAD"/>
 <part name="U$7" library="pad" deviceset="PAD" device="PAD"/>
-<part name="U$8" library="pad" deviceset="PAD" device="PAD"/>
-<part name="U$9" library="pad" deviceset="PAD" device="PAD"/>
+<part name="U$8" library="padLarge" deviceset="PAD" device="PAD"/>
+<part name="U$9" library="padLarge" deviceset="PAD" device="PAD"/>
 <part name="U$10" library="pad" deviceset="PAD" device="PAD"/>
 <part name="U$11" library="pad" deviceset="PAD" device="PAD"/>
 <part name="U$12" library="pad" deviceset="PAD" device="PAD"/>
