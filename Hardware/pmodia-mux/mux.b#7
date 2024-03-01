@@ -3,7 +3,7 @@
 <eagle version="9.6.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="3.93" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -186,7 +186,7 @@ Source: Data sheet</description>
 <library name="padLarge">
 <packages>
 <package name="PAD">
-<smd name="P$1" x="0" y="0" dx="1.016" dy="1.016" layer="1"/>
+<smd name="P$1" x="0" y="0" dx="0.635" dy="0.635" layer="1"/>
 </package>
 </packages>
 </library>
@@ -383,22 +383,22 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="U$1" library="pad" package="PAD" value="PADPAD" x="30.745175" y="0.99821875" smashed="yes"/>
-<element name="U$10" library="pad" package="PAD" value="PADPAD" x="29.5473125" y="4.691634375" locked="yes" smashed="yes"/>
-<element name="U$11" library="pad" package="PAD" value="PADPAD" x="29.74695625" y="5.19074375" locked="yes" smashed="yes"/>
-<element name="U$12" library="pad" package="PAD" value="PADPAD" x="29.9466" y="5.689853125" locked="yes" smashed="yes"/>
-<element name="U$13" library="pad" package="PAD" value="PADPAD" x="30.14624375" y="6.1889625" locked="yes" smashed="yes"/>
-<element name="U$14" library="pad" package="PAD" value="PADPAD" x="30.3458875" y="6.688075" locked="yes" smashed="yes"/>
-<element name="U$15" library="pad" package="PAD" value="PADPAD" x="30.54553125" y="7.187184375" locked="yes" smashed="yes"/>
-<element name="U$16" library="pad" package="PAD" value="PADPAD" x="30.745175" y="7.68629375" locked="yes" smashed="yes"/>
-<element name="U$2" library="pad" package="PAD" value="PADPAD" x="30.54553125" y="1.49733125" smashed="yes"/>
-<element name="U$3" library="pad" package="PAD" value="PADPAD" x="30.345909375" y="1.996440625" smashed="yes"/>
-<element name="U$4" library="pad" package="PAD" value="PADPAD" x="30.14624375" y="2.49555" smashed="yes"/>
-<element name="U$5" library="pad" package="PAD" value="PADPAD" x="29.946603125" y="2.994659375" smashed="yes"/>
-<element name="U$6" library="pad" package="PAD" value="PADPAD" x="29.74695625" y="3.49376875" smashed="yes"/>
-<element name="U$7" library="pad" package="PAD" value="PADPAD" x="29.5473125" y="3.99288125" smashed="yes"/>
-<element name="U$8" library="padLarge" package="PAD" value="PADPAD" x="24.6910875" y="3.9276" smashed="yes"/>
-<element name="U$9" library="padLarge" package="PAD" value="PADPAD" x="24.709121875" y="5.170934375" smashed="yes"/>
+<element name="U$1" library="pad" package="PAD" value="PADPAD" x="31.1444625" y="0.59893125" smashed="yes"/>
+<element name="U$10" library="pad" package="PAD" value="PADPAD" x="29.9466" y="5.090921875" smashed="yes"/>
+<element name="U$11" library="pad" package="PAD" value="PADPAD" x="30.14624375" y="5.59003125" smashed="yes"/>
+<element name="U$12" library="pad" package="PAD" value="PADPAD" x="30.3458875" y="6.089140625" smashed="yes"/>
+<element name="U$13" library="pad" package="PAD" value="PADPAD" x="30.54553125" y="6.58825" smashed="yes"/>
+<element name="U$14" library="pad" package="PAD" value="PADPAD" x="30.745175" y="7.0873625" smashed="yes"/>
+<element name="U$15" library="pad" package="PAD" value="PADPAD" x="30.94481875" y="7.586471875" smashed="yes"/>
+<element name="U$16" library="pad" package="PAD" value="PADPAD" x="31.1444625" y="8.08558125" smashed="yes"/>
+<element name="U$2" library="pad" package="PAD" value="PADPAD" x="30.94481875" y="1.09804375" smashed="yes"/>
+<element name="U$3" library="pad" package="PAD" value="PADPAD" x="30.745196875" y="1.597153125" smashed="yes"/>
+<element name="U$4" library="pad" package="PAD" value="PADPAD" x="30.54553125" y="2.0962625" smashed="yes"/>
+<element name="U$5" library="pad" package="PAD" value="PADPAD" x="30.345890625" y="2.595371875" smashed="yes"/>
+<element name="U$6" library="pad" package="PAD" value="PADPAD" x="30.14624375" y="3.09448125" smashed="yes"/>
+<element name="U$7" library="pad" package="PAD" value="PADPAD" x="29.9466" y="3.59359375" smashed="yes"/>
+<element name="U$8" library="padLarge" package="PAD" value="PADPAD" x="26.58770625" y="3.927596875" smashed="yes"/>
+<element name="U$9" library="padLarge" package="PAD" value="PADPAD" x="26.605740625" y="4.671825" smashed="yes"/>
 <element name="X2" library="con-hirose" package="FH12-16S-0.5SH" package3d_urn="urn:adsk.eagle:package:7319/1" value="FH12-16S-0.5SH" x="4.826" y="4.318" smashed="yes" rot="R90">
 <attribute name="MF" value="" x="4.826" y="4.318" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MPN" value="FH12-16S-0.5SH(55)" x="4.826" y="4.318" size="1.778" layer="27" rot="R90" display="off"/>
@@ -411,82 +411,94 @@ design rules under a new name.</description>
 <signal name="N$1">
 <contactref element="U$1" pad="P$1"/>
 <contactref element="X2" pad="1"/>
-<wire x1="1.576" y1="0.568" x2="30.745175" y2="0.99821875" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="0.568" x2="31.1444625" y2="0.59893125" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="U$2" pad="P$1"/>
 <contactref element="X2" pad="2"/>
-<wire x1="1.576" y1="1.068" x2="30.54553125" y2="1.49733125" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="1.068" x2="30.94481875" y2="1.09804375" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$3">
 <contactref element="U$3" pad="P$1"/>
 <contactref element="X2" pad="3"/>
-<wire x1="1.576" y1="1.568" x2="30.345909375" y2="1.996440625" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="1.568" x2="30.745196875" y2="1.597153125" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$4">
 <contactref element="U$4" pad="P$1"/>
 <contactref element="X2" pad="4"/>
-<wire x1="1.576" y1="2.068" x2="30.14624375" y2="2.49555" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="2.068" x2="30.54553125" y2="2.0962625" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$5">
 <contactref element="U$5" pad="P$1"/>
 <contactref element="X2" pad="5"/>
-<wire x1="1.576" y1="2.568" x2="29.946603125" y2="2.994659375" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="2.568" x2="30.345890625" y2="2.595371875" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$7">
 <contactref element="U$7" pad="P$1"/>
 <contactref element="X2" pad="7"/>
-<wire x1="1.576" y1="3.568" x2="29.5473125" y2="3.99288125" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="3.568" x2="29.9466" y2="3.59359375" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$9">
 <contactref element="U$9" pad="P$1"/>
 <contactref element="X2" pad="9"/>
-<wire x1="1.576" y1="4.568" x2="24.709121875" y2="5.170934375" width="0" layer="19" extent="1-1"/>
+<wire x1="26.605740625" y1="4.671825" x2="25.86585625" y2="4.671825" width="0.1524" layer="1"/>
+<wire x1="25.86585625" y1="4.671825" x2="25.7805125" y2="4.58648125" width="0.1524" layer="1"/>
+<wire x1="1.59448125" y1="4.58648125" x2="1.576" y2="4.568" width="0.1524" layer="1"/>
+<wire x1="25.7805125" y1="4.58648125" x2="1.59448125" y2="4.58648125" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$10">
 <contactref element="U$10" pad="P$1"/>
 <contactref element="X2" pad="10"/>
-<wire x1="1.576" y1="5.068" x2="29.5473125" y2="4.691634375" width="0" layer="19" extent="1-1"/>
+<wire x1="29.9466" y1="5.090921875" x2="27.144928125" y2="5.090921875" width="0.1524" layer="1"/>
+<wire x1="27.144928125" y1="5.090921875" x2="27.017925" y2="5.217925" width="0.1524" layer="1"/>
+<wire x1="27.017925" y1="5.217925" x2="25.9809" y2="5.217925" width="0.1524" layer="1"/>
+<wire x1="25.9809" y1="5.217925" x2="25.654253125" y2="4.891278125" width="0.1524" layer="1"/>
+<wire x1="2.376009375" y1="4.891278125" x2="2.3206875" y2="4.9466" width="0.1524" layer="1"/>
+<wire x1="2.3206875" y1="4.9466" x2="1.6974" y2="4.9466" width="0.1524" layer="1"/>
+<wire x1="1.6974" y1="4.9466" x2="1.576" y2="5.068" width="0.1524" layer="1"/>
+<wire x1="25.654253125" y1="4.891278125" x2="2.376009375" y2="4.891278125" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$11">
 <contactref element="U$11" pad="P$1"/>
 <contactref element="X2" pad="11"/>
-<wire x1="1.576" y1="5.568" x2="29.74695625" y2="5.19074375" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="5.568" x2="30.14624375" y2="5.59003125" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$12">
 <contactref element="U$12" pad="P$1"/>
 <contactref element="X2" pad="12"/>
-<wire x1="1.576" y1="6.068" x2="29.9466" y2="5.689853125" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="6.068" x2="30.3458875" y2="6.089140625" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$13">
 <contactref element="U$13" pad="P$1"/>
 <contactref element="X2" pad="13"/>
-<wire x1="1.576" y1="6.568" x2="30.14624375" y2="6.1889625" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="6.568" x2="30.54553125" y2="6.58825" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$14">
 <contactref element="U$14" pad="P$1"/>
 <contactref element="X2" pad="14"/>
-<wire x1="1.576" y1="7.068" x2="30.3458875" y2="6.688075" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="7.068" x2="30.745175" y2="7.0873625" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$15">
 <contactref element="U$15" pad="P$1"/>
 <contactref element="X2" pad="15"/>
-<wire x1="1.576" y1="7.568" x2="30.54553125" y2="7.187184375" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="7.568" x2="30.94481875" y2="7.586471875" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$16">
 <contactref element="U$16" pad="P$1"/>
 <contactref element="X2" pad="16"/>
-<wire x1="1.576" y1="8.068" x2="30.745175" y2="7.68629375" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="8.068" x2="31.1444625" y2="8.08558125" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$6">
 <contactref element="U$6" pad="P$1"/>
 <contactref element="X2" pad="6"/>
-<wire x1="1.576" y1="3.068" x2="29.74695625" y2="3.49376875" width="0" layer="19" extent="1-1"/>
+<wire x1="1.576" y1="3.068" x2="30.14624375" y2="3.09448125" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$8">
 <contactref element="U$8" pad="P$1"/>
 <contactref element="X2" pad="8"/>
-<wire x1="1.576" y1="4.068" x2="24.6910875" y2="3.9276" width="0" layer="19" extent="1-1"/>
+<wire x1="26.58770625" y1="3.927596875" x2="26.568703125" y2="3.9466" width="0.1524" layer="1"/>
+<wire x1="26.568703125" y1="3.9466" x2="1.6974" y2="3.9466" width="0.1524" layer="1"/>
+<wire x1="1.6974" y1="3.9466" x2="1.576" y2="4.068" width="0.1524" layer="1"/>
 </signal>
 <signal name="GND">
 <polygon width="0.1524" layer="1">
