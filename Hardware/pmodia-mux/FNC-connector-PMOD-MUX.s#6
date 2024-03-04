@@ -10134,9 +10134,9 @@ to disable the mux.</text>
 <label x="93.98" y="134.62" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 <segment>
-<label x="114.3" y="144.78" size="1.778" layer="95"/>
-<pinref part="X1" gate="-7" pin="1"/>
-<wire x1="124.46" y1="144.78" x2="116.84" y2="144.78" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-1" pin="1"/>
+<wire x1="124.46" y1="160.02" x2="116.84" y2="160.02" width="0.1524" layer="91"/>
+<label x="116.84" y="160.02" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y6" class="0">
@@ -10146,9 +10146,9 @@ to disable the mux.</text>
 <label x="93.98" y="137.16" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 <segment>
-<label x="114.3" y="147.32" size="1.778" layer="95"/>
-<wire x1="116.84" y1="147.32" x2="124.46" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="X1" gate="-6" pin="1"/>
+<wire x1="124.46" y1="157.48" x2="116.84" y2="157.48" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-2" pin="1"/>
+<label x="116.84" y="157.48" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y5" class="0">
@@ -10158,14 +10158,9 @@ to disable the mux.</text>
 <label x="93.98" y="139.7" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 <segment>
-<label x="114.3" y="142.24" size="1.778" layer="95"/>
-<pinref part="X1" gate="-8" pin="1"/>
-<wire x1="116.84" y1="142.24" x2="124.46" y2="142.24" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="R10" gate="G$1" pin="1"/>
-<wire x1="50.8" y1="106.68" x2="45.72" y2="106.68" width="0.1524" layer="91"/>
-<label x="45.72" y="106.68" size="1.778" layer="95"/>
+<wire x1="124.46" y1="154.94" x2="116.84" y2="154.94" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-3" pin="1"/>
+<label x="116.84" y="154.94" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y4" class="0">
@@ -10175,9 +10170,9 @@ to disable the mux.</text>
 <label x="93.98" y="142.24" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 <segment>
-<label x="114.3" y="149.86" size="1.778" layer="95"/>
-<wire x1="116.84" y1="149.86" x2="124.46" y2="149.86" width="0.1524" layer="91"/>
-<pinref part="X1" gate="-5" pin="1"/>
+<wire x1="124.46" y1="152.4" x2="116.84" y2="152.4" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-4" pin="1"/>
+<label x="116.84" y="152.4" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y3" class="0">
@@ -10187,9 +10182,9 @@ to disable the mux.</text>
 <label x="93.98" y="144.78" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 <segment>
-<label x="114.3" y="160.02" size="1.778" layer="95"/>
-<pinref part="X1" gate="-1" pin="1"/>
-<wire x1="116.84" y1="160.02" x2="124.46" y2="160.02" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="149.86" x2="116.84" y2="149.86" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-5" pin="1"/>
+<label x="116.84" y="149.86" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y2" class="0">
@@ -10199,9 +10194,9 @@ to disable the mux.</text>
 <label x="93.98" y="147.32" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 <segment>
-<label x="114.3" y="152.4" size="1.778" layer="95"/>
-<pinref part="X1" gate="-4" pin="1"/>
-<wire x1="124.46" y1="152.4" x2="116.84" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="147.32" x2="116.84" y2="147.32" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-6" pin="1"/>
+<label x="116.84" y="147.32" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y1" class="0">
@@ -10211,9 +10206,9 @@ to disable the mux.</text>
 <label x="93.98" y="149.86" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 <segment>
-<label x="114.3" y="154.94" size="1.778" layer="95"/>
-<pinref part="X1" gate="-3" pin="1"/>
-<wire x1="116.84" y1="154.94" x2="124.46" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="144.78" x2="116.84" y2="144.78" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-7" pin="1"/>
+<label x="116.84" y="144.78" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y0" class="0">
@@ -10223,9 +10218,14 @@ to disable the mux.</text>
 <label x="93.98" y="152.4" size="1.27" layer="95" font="vector" xref="yes"/>
 </segment>
 <segment>
-<label x="114.3" y="157.48" size="1.778" layer="95"/>
-<pinref part="X1" gate="-2" pin="1"/>
-<wire x1="124.46" y1="157.48" x2="116.84" y2="157.48" width="0.1524" layer="91"/>
+<pinref part="R10" gate="G$1" pin="1"/>
+<wire x1="50.8" y1="106.68" x2="45.72" y2="106.68" width="0.1524" layer="91"/>
+<label x="45.72" y="106.68" size="1.778" layer="95"/>
+</segment>
+<segment>
+<wire x1="124.46" y1="142.24" x2="116.84" y2="142.24" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-8" pin="1"/>
+<label x="116.84" y="142.24" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="S2" class="0">
@@ -10235,9 +10235,9 @@ to disable the mux.</text>
 <label x="68.58" y="139.7" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="10.16" y="137.16" size="1.27" layer="95" font="vector" xref="yes"/>
-<pinref part="JP1" gate="A" pin="3"/>
-<wire x1="10.16" y1="137.16" x2="-2.54" y2="137.16" width="0.1524" layer="91"/>
+<label x="10.16" y="132.08" size="1.27" layer="95" font="vector" xref="yes"/>
+<pinref part="JP1" gate="A" pin="1"/>
+<wire x1="-2.54" y1="132.08" x2="10.16" y2="132.08" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="S2"/>
@@ -10252,9 +10252,9 @@ to disable the mux.</text>
 <label x="68.58" y="144.78" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<label x="10.16" y="132.08" size="1.27" layer="95" font="vector" xref="yes"/>
-<pinref part="JP1" gate="A" pin="1"/>
-<wire x1="-2.54" y1="132.08" x2="10.16" y2="132.08" width="0.1524" layer="91"/>
+<label x="10.16" y="137.16" size="1.27" layer="95" font="vector" xref="yes"/>
+<pinref part="JP1" gate="A" pin="3"/>
+<wire x1="-2.54" y1="137.16" x2="10.16" y2="137.16" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$1" pin="S0"/>
@@ -10324,9 +10324,9 @@ to disable the mux.</text>
 <label x="40.64" y="81.28" size="1.778" layer="95"/>
 </segment>
 <segment>
-<label x="111.76" y="137.16" size="1.778" layer="95"/>
-<pinref part="X1" gate="-10" pin="1"/>
-<wire x1="124.46" y1="137.16" x2="116.84" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="121.92" x2="116.84" y2="121.92" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-16" pin="1"/>
+<label x="116.84" y="121.92" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y26" class="0">
@@ -10336,9 +10336,9 @@ to disable the mux.</text>
 <label x="40.64" y="83.82" size="1.778" layer="95"/>
 </segment>
 <segment>
-<label x="111.76" y="134.62" size="1.778" layer="95"/>
-<pinref part="X1" gate="-11" pin="1"/>
-<wire x1="116.84" y1="134.62" x2="124.46" y2="134.62" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-15" pin="1"/>
+<label x="116.84" y="124.46" size="1.778" layer="95"/>
+<wire x1="124.46" y1="124.46" x2="116.84" y2="124.46" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="Y25" class="0">
@@ -10348,14 +10348,9 @@ to disable the mux.</text>
 <label x="40.64" y="86.36" size="1.778" layer="95"/>
 </segment>
 <segment>
-<label x="111.76" y="139.7" size="1.778" layer="95"/>
-<pinref part="X1" gate="-9" pin="1"/>
-<wire x1="116.84" y1="139.7" x2="124.46" y2="139.7" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="R10" gate="G$1" pin="2"/>
-<wire x1="60.96" y1="106.68" x2="66.04" y2="106.68" width="0.1524" layer="91"/>
-<label x="63.5" y="106.68" size="1.778" layer="95"/>
+<wire x1="124.46" y1="127" x2="116.84" y2="127" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-14" pin="1"/>
+<label x="116.84" y="127" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y24" class="0">
@@ -10365,9 +10360,9 @@ to disable the mux.</text>
 <label x="40.64" y="88.9" size="1.778" layer="95"/>
 </segment>
 <segment>
-<label x="111.76" y="132.08" size="1.778" layer="95"/>
-<wire x1="116.84" y1="132.08" x2="124.46" y2="132.08" width="0.1524" layer="91"/>
-<pinref part="X1" gate="-12" pin="1"/>
+<wire x1="124.46" y1="129.54" x2="116.84" y2="129.54" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-13" pin="1"/>
+<label x="116.84" y="129.54" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y23" class="0">
@@ -10377,9 +10372,9 @@ to disable the mux.</text>
 <label x="40.64" y="91.44" size="1.778" layer="95"/>
 </segment>
 <segment>
-<label x="111.76" y="121.92" size="1.778" layer="95"/>
-<pinref part="X1" gate="-16" pin="1"/>
-<wire x1="124.46" y1="121.92" x2="116.84" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="132.08" x2="116.84" y2="132.08" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-12" pin="1"/>
+<label x="116.84" y="132.08" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y22" class="0">
@@ -10389,9 +10384,9 @@ to disable the mux.</text>
 <label x="40.64" y="93.98" size="1.778" layer="95"/>
 </segment>
 <segment>
-<label x="111.76" y="129.54" size="1.778" layer="95"/>
-<wire x1="116.84" y1="129.54" x2="124.46" y2="129.54" width="0.1524" layer="91"/>
-<pinref part="X1" gate="-13" pin="1"/>
+<pinref part="X1" gate="-11" pin="1"/>
+<wire x1="124.46" y1="134.62" x2="116.84" y2="134.62" width="0.1524" layer="91"/>
+<label x="116.84" y="134.62" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y21" class="0">
@@ -10401,9 +10396,9 @@ to disable the mux.</text>
 <label x="40.64" y="96.52" size="1.778" layer="95"/>
 </segment>
 <segment>
-<label x="111.76" y="127" size="1.778" layer="95"/>
-<pinref part="X1" gate="-14" pin="1"/>
-<wire x1="124.46" y1="127" x2="116.84" y2="127" width="0.1524" layer="91"/>
+<wire x1="124.46" y1="137.16" x2="116.84" y2="137.16" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-10" pin="1"/>
+<label x="116.84" y="137.16" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="Y20" class="0">
@@ -10413,9 +10408,14 @@ to disable the mux.</text>
 <label x="40.64" y="99.06" size="1.778" layer="95"/>
 </segment>
 <segment>
-<label x="111.76" y="124.46" size="1.778" layer="95"/>
-<pinref part="X1" gate="-15" pin="1"/>
-<wire x1="116.84" y1="124.46" x2="124.46" y2="124.46" width="0.1524" layer="91"/>
+<pinref part="R10" gate="G$1" pin="2"/>
+<wire x1="60.96" y1="106.68" x2="66.04" y2="106.68" width="0.1524" layer="91"/>
+<label x="63.5" y="106.68" size="1.778" layer="95"/>
+</segment>
+<segment>
+<wire x1="124.46" y1="139.7" x2="116.84" y2="139.7" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-9" pin="1"/>
+<label x="116.84" y="139.7" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$1" class="0">

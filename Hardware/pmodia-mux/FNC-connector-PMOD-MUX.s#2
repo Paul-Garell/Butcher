@@ -10352,11 +10352,6 @@ to disable the mux.</text>
 <pinref part="X1" gate="-9" pin="1"/>
 <wire x1="116.84" y1="139.7" x2="124.46" y2="139.7" width="0.1524" layer="91"/>
 </segment>
-<segment>
-<pinref part="R10" gate="G$1" pin="2"/>
-<wire x1="60.96" y1="106.68" x2="66.04" y2="106.68" width="0.1524" layer="91"/>
-<label x="63.5" y="106.68" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="Y24" class="0">
 <segment>
@@ -10411,6 +10406,11 @@ to disable the mux.</text>
 <pinref part="U2" gate="G$1" pin="Y0"/>
 <wire x1="38.1" y1="99.06" x2="40.64" y2="99.06" width="0.1524" layer="91"/>
 <label x="40.64" y="99.06" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="R10" gate="G$1" pin="2"/>
+<wire x1="60.96" y1="106.68" x2="66.04" y2="106.68" width="0.1524" layer="91"/>
+<label x="63.5" y="106.68" size="1.778" layer="95"/>
 </segment>
 <segment>
 <label x="111.76" y="124.46" size="1.778" layer="95"/>
