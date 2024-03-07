@@ -145,6 +145,7 @@ void frequencySweepEasy(int pin) {
       dataFile.println(" ");
       
       // Close the file
+      Serial.flush();
       dataFile.close();
     }
   }
