@@ -170,6 +170,7 @@ bool frequencySweepEasy(int pin) {
       dataFile.println(" ");
       Serial.println(" "); 
       // Close the file
+      Serial.flush();
       dataFile.close();
     }
   }
