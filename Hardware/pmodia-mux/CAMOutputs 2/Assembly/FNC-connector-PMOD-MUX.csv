@@ -1,0 +1,18 @@
+"Qty";"Value";"Device";"Package";"Parts";"Description";"AVAILABILITY";"CHECK_PRICES";"DESCRIPTION";"MF";"MP";"MPN";"OC_FARNELL";"OC_NEWARK";"PACKAGE";"POPULARITY";"PRICE";"PROD_ID";"PURCHASE-URL";"SNAPEDA_LINK";"SPICEPREFIX";"VALUE";
+"1";"";"PINHD-1X7/90";"1X07/90";"JP1";"PIN HEADER";"";"";"";"";"";"";"";"";"";"1";"";"";"";"";"";"";
+"1";"0.1uF";"0.1UF-0603-25V-(+80/-20%)";"0603";"C1";"0.1µF ceramic capacitors";"";"";"";"";"";"";"";"";"";"";"";"CAP-00810";"";"";"";"0.1uF";
+"6";"0.1uF";"C-USC0805K";"C0805K";"C2, C4, C17, C18, C23, C24";"CAPACITOR, American symbol";"";"";"";"";"";"";"";"";"";"19";"";"";"";"";"C";"";
+"1";"100K";"R-US_R0603";"R0603";"R17";"RESISTOR, American symbol";"";"";"";"";"";"";"";"";"";"77";"";"";"";"";"R";"";
+"1";"10k";"10KOHM-0603-1/10W-1%";"0603";"R1";"10kΩ resistor";"";"";"";"";"";"";"";"";"";"";"";"RES-00824";"";"";"";"10k";
+"5";"10uF";"C-USC0805K";"C0805K";"C3, C15, C16, C20, C25";"CAPACITOR, American symbol";"";"";"";"";"";"";"";"";"";"19";"";"";"";"";"C";"";
+"1";"20";"R-US_R0603";"R0603";"R15";"RESISTOR, American symbol";"";"";"";"";"";"";"";"";"";"77";"";"";"";"";"R";"";
+"2";"20K";"R-US_R0603";"R0603";"R16, R18";"RESISTOR, American symbol";"";"";"";"";"";"";"";"";"";"77";"";"";"";"";"R";"";
+"1";"300";"0.3OHM-0805-1/8W-1%";"0805";"R10";"0.3Ω resistor";"";"";"";"";"";"";"";"";"";"";"";"RES-11622";"";"";"";"0.3";
+"1";"47nF";"C-USC0805K";"C0805K";"C19";"CAPACITOR, American symbol";"";"";"";"";"";"";"";"";"";"19";"";"";"";"";"C";"";
+"4";"49.9K";"R-US_R0603";"R0603";"R11, R12, R13, R14";"RESISTOR, American symbol";"";"";"";"";"";"";"";"";"";"77";"";"";"";"";"R";"";
+"2";"74HC4051BQ";"74HC4051BQ";"DHVQFN-16-2.5X3.5MM";"U1, U2";"NXP 74HC4051 8-Channel Analog Multiplexer/Demultiplexer";"";"";"";"";"";"";"";"";"";"";"";"IC-13334";"";"";"";"";
+"1";"AD5933";"AD5933";"SSOP16";"U3";"1 MSPS, 12-Bit Impedance Converter, Network Analyzer";"";"";"";"";"";"";"";"";"";"";"";"";"";"";"";"";
+"1";"AD8606";"AD8606";"SOIC-8";"U4";"Operational amplifier; 10MHz; 2.7÷5VDC; Channels: 2; SO8 Check availability";"In Stock";"https://www.snapeda.com/parts/AD8606ARZ/Analog+Devices/view-part/?ref=eda";" Precision, Low Noise, RRIO, CMOS Op Amp (Dual) ";"Analog Devices";"AD8606ARZ";"";"";"";"SOIC-8 Analog Devices";"";"None";"";"https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=43414&manufacturer=Analog Devices&part_name=AD8606ARZ&search_term=ad8606";"https://www.snapeda.com/parts/AD8606ARZ/Analog+Devices/view-part/?ref=snap";"";"";
+"1";"ADG849THROUHG_HOLE";"ADG849THROUHG_HOLE";"SOT65P210X110-6N";"U$1";"";"";"";"";"";"";"";"";"";"";"";"";"";"";"";"";"";
+"1";"ADP150";"ADP150";"SOT95P280X100-5N";"U5";"IC REG LINEAR 2V 150MA 5TSOT Check availability";"In Stock";"https://www.snapeda.com/parts/ADP150AUJZ-2.0-R7/Analog+Devices/view-part/?ref=eda";" Ultralow Noise, 150 mA CMOS Linear Regulator ";"Analog Devices";"ADP150AUJZ-2.0-R7";"";"";"";"TSOT-5 Analog Devices";"";"None";"";"https://www.snapeda.com/api/url_track_click_mouser/?unipart_id=1225884&manufacturer=Analog Devices&part_name=ADP150AUJZ-2.0-R7&search_term=adp150";"https://www.snapeda.com/parts/ADP150AUJZ-2.0-R7/Analog+Devices/view-part/?ref=snap";"";"";
+"1";"FH12-16S-0.5SH";"FH12-16S-0.5SH";"FH12-16S-0.5SH";"X1";"0.5mm Pitch Connectors For FPC/FFC";"";"";"";"";"";"FH12-16S-0.5SH(55)";"1324546";"34M6162";"";"0";"";"";"";"";"";"";
