@@ -1,4 +1,4 @@
-#Butcher lab Cervicheck project
+# Butcher lab Cervicheck project
 
 Questions, reach out to Paul Garell (prg74@cornell.edu). 
 
