@@ -149,13 +149,11 @@ void loop(void)
 void frequencySweepEasy() {
   // Create arrays to hold the data
   int real[NUM_INCR + 1], imag[NUM_INCR + 1];
-  controlPressure(true);
   // Perform the frequency sweep
   if (AD5933::frequencySweep(real, imag, NUM_INCR + 1)) {
     // Print the frequency data
     int cfreq = START_FREQ / 1000;
     for (int i = 0; i < NUM_INCR + 1; i++, cfreq += FREQ_INCR / 1000) {
-      controlPressure(true);
       // Print raw frequency data
       Serial.print(cfreq);
       Serial.print(": Impedance = ");
@@ -176,10 +174,6 @@ void frequencySweepEasy() {
   }
 }
 
-void equilibriate(void)
-{
-  
-}
 
 void controlPressure(bool hold)
 {
