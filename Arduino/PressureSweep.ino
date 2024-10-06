@@ -87,7 +87,7 @@ void setup(void)
 
 void loop(void)
 {
-  dac.setVoltage((1*4095)/5, false);
+  dac.setVoltage(1500, false);
 
   // Lights for Ready to Test
   digitalWrite(greenLED, LOW);
@@ -95,14 +95,7 @@ void loop(void)
   startbuttonState = digitalRead(startbuttonPin);
   if (startbuttonState == HIGH) {
     // Lights for Testing
-    dac.setVoltage((5*4095)/5, false);
-    /*
-    digitalWrite(yellowLED, LOW);
-    digitalWrite(greenLED, HIGH);
-    Serial.println(getPressure());
     frequencySweepEasy();
-    Serial.println(getPressure());
-    */
   }
 
   
