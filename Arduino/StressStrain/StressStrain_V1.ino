@@ -4,7 +4,6 @@
 #include "AD5933.h"
 #include <SD.h>
 
-
 Adafruit_MCP4725 dac;
 Adafruit_ADS1015 ads1015;
 
@@ -23,36 +22,40 @@ Adafruit_ADS1015 ads1015;
 #define PRES_INCR (-0.5)
 #define PRES_NUM_INCR (30)
 
+float pressure;
+const float error = 0.1;
+
+// Impedance Constants
+
 double gain[NUM_INCR + 1];
 int phase[NUM_INCR + 1];
 
 int i;
 
+// Mux Constants
 int sL[3] = { 8, 9, 10 };
 // First value corresponds to 300 ohm resistor
-// Green: 560 vs non-Green 270
-// int MUXtable[8][3] = { { 1, 1, 0 }, { 0, 1, 1 }, { 0, 0, 0 }, { 0, 0, 1 }, { 0, 1, 0 }, { 1, 0, 0 }, { 1, 0, 1 }, { 1, 1, 1 } };  // purple board
-//int MUXtable[8][3] = { { 1, 0, 1 }, { 0, 1, 1 }, { 0, 0, 0 }, { 0, 0, 1 }, { 0, 1, 0 }, { 1, 0, 0 }, { 1, 1, 0 }, { 1, 1, 1 } }; // green board
+// int MUXtable[8][3] = { { 1, 0, 1 }, { 0, 1, 1 }, { 0, 0, 0 }, { 0, 0, 1 }, { 0, 1, 0 }, { 1, 0, 0 }, { 1, 1, 0 }, { 1, 1, 1 } }; // green board (old pad arrangement)
 int MUXtable[8][3] = { { 1, 0, 1 }, { 1, 1, 1 }, { 0, 1, 1 }, { 0, 0, 1 }, { 0, 1, 0 }, { 1, 0, 0 }, { 0, 0, 0 }, { 1, 1, 0 } }; // new pad arrangement
-// Flipped new pad arrangement, if pads are flipped
+// int MUXtable[8][3] = { { 1, 0, 1 }, { 1, 1, 0 }, { 0, 0, 0 }, { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 }, { 0, 1, 1 }, { 1, 1, 1 } }; // Flipped new pad arrangement, if pads are flipped
+
+//Stress Stain Test Global Variables
 int curPad = 1;
 float stressStrain[7] = {0,0,0,0,0,0,0};
-// Board Constants
 
+// Board Constants
 const int yellowLED = 5;
 const int greenLED = 6;
 const int startbuttonPin = 7;
 int startbuttonState = 0;
 
-float pressure;
-const float error = 0.1;
-
 // Pressure Control Constants
 // y = mx where y is digital value to supply DAC and x is desired pressure (-kPa)
+// slope and yint are calibrated before hand, determined with linear regression
 const float slope = -87.87;
 const float yint = 55.45;
 
-//SD Card
+// SD Card
 File dataFile;
 String filename = "Data.csv";
 const int chipSelectPin = 4;
@@ -79,7 +82,7 @@ void setup(void) {
 
   // Open a new file for writing
   dataFile = SD.open(filename, FILE_WRITE);
-  // SD.remove(filename);
+  // SD.remove(filename); // Uncomment to wipe SD card reader files
   if (dataFile) {
     Serial.println("Created data.csv file.");
   } else {
@@ -115,7 +118,7 @@ void setup(void) {
 
   Serial.println("Initialized!");
 
-  // Select 300 OHM resistor
+  // Select 300 OHM resistor to Calibrate AD5933
   selectPad(0);
 
   Serial.print("Calibrating... ");
@@ -135,14 +138,17 @@ void setup(void) {
 }
 
 void loop(void) {
+  // Set pressure to 0 before test begins
   dac.setVoltage(0, false);
   digitalWrite(greenLED, LOW);
   digitalWrite(yellowLED, HIGH);
   startbuttonState = digitalRead(startbuttonPin);
+  // Press button to start test
   if (startbuttonState == HIGH) {
     Serial.println("Stress Strain Determination Start!");
     pressureSweep();
     Serial.println("Done!");
+    // Output data after sweep
     for (int i = 1; i < 8; i++) {
       Serial.print("Pad: ");
       Serial.print(i);
@@ -150,37 +156,13 @@ void loop(void) {
       Serial.println(stressStrain[i-1]);
     } 
   }
-  /*
-  // Test to determine if pressure has reached equilibrium
-  if (abs(getAveragePressure(6)-(-10)) < error ){
-    digitalWrite(greenLED, HIGH);
-    digitalWrite(yellowLED, LOW);
-  }else{
-    digitalWrite(greenLED, LOW);
-    digitalWrite(yellowLED, HIGH);
-  }
-  // Test to determine if pressure has reached equilibrium
-  */
-  /*
-  // Lights for Ready to Test
-  digitalWrite(greenLED, LOW);
-  digitalWrite(yellowLED, HIGH);
-  startbuttonState = digitalRead(startbuttonPin);
-  if (startbuttonState == HIGH) {
-    digitalWrite(greenLED, HIGH);
-    digitalWrite(yellowLED, LOW);
-    dataFile = SD.open(filename, FILE_WRITE);
-    runSweep();
-    dataFile.close();
-    Serial.println("Done!");
-  }
-  */
 }
 
-
-
-// Testing Functions
 void pressureSweep() {
+  /*
+    Paramters: Steps
+    Returns: 
+  */
   curPad = 1;
   pressure = PRES_START;
   for (int i = 0; i < PRES_NUM_INCR + 1; i++, pressure += PRES_INCR) {
@@ -200,6 +182,10 @@ void pressureSweep() {
 }
 
 void runSweep() {
+  /*
+    Paramters: None
+    Returns: Runs a sweep on all 7 pads from the top most pad closest to tissue to the bottom
+  */
   dataFile.println(" ");
   for (int i = 1; i < (sizeof(MUXtable) / sizeof(MUXtable[0])); i++) {
     dataFile.println(" ");
@@ -224,6 +210,10 @@ void runSweep() {
 }
 
 void runTest(int padnum) {
+  /*
+    Paramters: Takes in pad number, runs a frequency sweep only on this pad
+    Returns: None
+  */
   dataFile.println(" ");
   dataFile.print("Pad ");
   dataFile.print(padnum);
@@ -249,6 +239,11 @@ void runTest(int padnum) {
 
 // Frequency Sweep
 void frequencySweepEasy() {
+  /*
+    Paramters: None
+    Returns: None, runs a frequency sweep with the AD5933 chip. Prints to serial monitor and SD card
+    - Also checks if pad has been contacted yet based on first impedance value
+  */
   // Create arrays to hold the data
   int real[NUM_INCR + 1], imag[NUM_INCR + 1];
 
@@ -299,26 +294,26 @@ void selectPad(int p) {
 // Pressure Control Functions
 float getPressure(void) {
   /*
-    Returns pressure from the MPXV5050VC6T1 pressure sensor
-
     Paramters: None
     Returns: takes in voltage reading from sensor from the ADS1015 pressure sensor and returns kPa
     PRESSURE READING DEPENDS ON THE VOLTAGE SUPPLIED (I TESTED FOR LIKE 2 MONTHS WITHOUT REALIZING!!!)
     - Hence, second channel on the ADS1015 tracks the voltage supplied
-
-    With testing from timing, function takes 2 milliseconds to run
   */
 
   // int16_t adc0; float vout; float pressure;
   // adc0 = ads1015.readADC_SingleEnded(0);         // output in bits, from A0
   // vout = ((adc0 * 3.0) / 1000);    // Convert bits to voltage, found on ADS1015 data sheet
   // pressure = (vout-(0.92*5))/(0.018*5);    // Convert voltage to pressure, found on MPXV5050VC6T1 data sheet
-  // voltage supply changes when battery turns on! For 18V, 0.8A -> vs is 4.58 V
+  // voltage supply changes when battery turns on! For 18V, 0.8A -> vs is 4.58 V, hence ADC also reads voltage going into pressure sensor
 
   return (((ads1015.readADC_SingleEnded(0) * 3.0) / 1000) - (0.92 * ((ads1015.readADC_SingleEnded(2) * 3.0) / 1000))) / (0.018 * ((ads1015.readADC_SingleEnded(2) * 3.0) / 1000));
 }
 
 float getAveragePressure(int steps) {
+  /*
+    Paramters: Steps, number of pressure values to average. Higher steps decreases chance of noise affecting system
+    Returns: averaged pressure values, allows for smoothing of pressure values
+  */
   float total = 0;
   for (int i = 0; i < steps; i++) {
     total += getPressure();
@@ -327,6 +322,10 @@ float getAveragePressure(int steps) {
 }
 
 void selectPressure(float p) {
+  /*
+    Paramters: pressure in kPa. If this number is positive, it will be assumed that it was negative (vacuum only makes negative pressure)
+    Returns: None. Sets pressure on the pressure transducer based on the supplied voltage. Conversion from bits to kPa is done beforehand
+  */
   if (p>0){
     p = p*-1;
   }
