@@ -22,7 +22,7 @@ void setup(void)
   // Initialize DAC
   dac.begin(0x60);
 
-  dac.setVoltage((1*4095)/5, false);
+  dac.setVoltage((3*4095)/5, false);
 }
 
 void loop(void)
@@ -45,6 +45,6 @@ float getPressure(void)
   // adc0 = ads1015.readADC_SingleEnded(0);         // output in bits, from A0
   // vout = ((adc0 * 3.0) / 1000);    // Convert bits to voltage, found on ADS1015 data sheet
   // pressure = (vout-(0.92*5))/(0.018*5);    // Convert voltage to pressure, found on MPXV5050VC6T1 data sheet
-  return ((ads1015.readADC_SingleEnded(2)*3)/1000);
-  //return (((ads1015.readADC_SingleEnded(0) * 3.0) / 1000) - (0.92 * 5)) / (0.018 * 5);
+  // return ((ads1015.readADC_SingleEnded(0) * 3.0) / 1000);
+  return (((ads1015.readADC_SingleEnded(0) * 3.0) / 1000) - (0.92 * ((ads1015.readADC_SingleEnded(2) * 3.0) / 1000))) / (0.018 * ((ads1015.readADC_SingleEnded(2) * 3.0) / 1000));
 }
